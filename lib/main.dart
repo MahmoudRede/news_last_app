@@ -24,8 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: getApplicationTheme(context),
-      home: const SplashView()
-      /*onBoarding ? const HomeScreen() : const OnboardingView()*/,
+      home: const SplashView(),
     );
   }
 }
