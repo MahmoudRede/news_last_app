@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:news_last_app/presentation/screens/start_screen/start_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:news_last_app/presentation/screens/splash_view/splash_view.dart';
 import 'package:news_last_app/styles/theme_manager/theme_manager.dart';
 
 import 'business_logic/app_cubit/app_cubit.dart';
@@ -22,11 +24,23 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
+import 'core/local/shared_preferences.dart';
+import 'presentation/screens/on_boarding_view/widgets/onboarding_constants.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
+  runApp(MyApp(
+    onBoarding: onBoarding,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool onBoarding;
 
+  const MyApp({super.key, required this.onBoarding});
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -72,3 +86,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
