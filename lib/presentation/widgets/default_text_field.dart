@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
-
-
 class DefaultTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
@@ -17,7 +15,7 @@ class DefaultTextField extends StatefulWidget {
   final Function() onTap;
   int? maxLines;
 
-   DefaultTextField({
+  DefaultTextField({
     Key? key,
     required this.controller,
     required this.hintText,
@@ -38,6 +36,7 @@ class DefaultTextField extends StatefulWidget {
 
 class _DefaultTextFieldState extends State<DefaultTextField> {
   bool isPasswordVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -52,68 +51,74 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
           fontSize: SizeConfig.headline6Size,
           color: ColorManager.red,
         ),
-
         hintText: widget.hintText,
         hintStyle: TextStyle(
           fontSize: SizeConfig.headline4Size,
-          color: ColorManager.lightGrey,
+          color: ColorManager.grey,
         ),
-        suffixIcon: widget.isPassword==true ? isPasswordVisible ? InkWell(
-          onTap: (){
-            setState(() {
-              isPasswordVisible = !isPasswordVisible;
-            });
-          },
-          child: Icon(
-            Icons.visibility,
-            color: ColorManager.grey,
-            size: SizeConfig.height*0.022,
-          ),
-        ): InkWell(
-          onTap: (){
-            setState(() {
-              isPasswordVisible = !isPasswordVisible;
-            });
-          },
-            child: Icon(Icons.visibility_off, color: ColorManager.grey, size: SizeConfig.height*0.022,)) :null,
+        suffixIcon: widget.isPassword == true
+            ? isPasswordVisible
+                ? InkWell(
+                    onTap: () {
+                      setState(() {
+                        isPasswordVisible = !isPasswordVisible;
+                      });
+                    },
+                    child: Icon(
+                      Icons.visibility,
+                      color: ColorManager.primaryColor,
+                      size: SizeConfig.height * 0.022,
+                    ),
+                  )
+                : InkWell(
+                    onTap: () {
+                      setState(() {
+                        isPasswordVisible = !isPasswordVisible;
+                      });
+                    },
+                    child: Icon(
+                      Icons.visibility_off,
+                      color: ColorManager.primaryColor,
+                      size: SizeConfig.height * 0.022,
+                    ))
+            : null,
         contentPadding: EdgeInsets.symmetric(
-          horizontal: SizeConfig.height*0.01,
-          vertical: SizeConfig.height*0.016
-        ),
+            horizontal: SizeConfig.height * 0.01,
+            vertical: SizeConfig.height * 0.016),
         border: OutlineInputBorder(
-          borderSide:  BorderSide(
-            color: ColorManager.grey,
+          borderSide: const BorderSide(
+            color: ColorManager.primaryColor,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(SizeConfig.height*0.01),
+          borderRadius: BorderRadius.circular(SizeConfig.height * 0.01),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide:  BorderSide(
-            color: ColorManager.grey,
+          borderSide: const BorderSide(
+            color: ColorManager.primaryColor,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(SizeConfig.height*0.01),
+          borderRadius: BorderRadius.circular(SizeConfig.height * 0.01),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide:  BorderSide(
-            color: ColorManager.grey,
+          borderSide: const BorderSide(
+            color: ColorManager.primaryColor,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(SizeConfig.height*0.01),
+          borderRadius: BorderRadius.circular(SizeConfig.height * 0.01),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide:  const BorderSide(
+          borderSide: const BorderSide(
             color: ColorManager.red,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(SizeConfig.height*0.01),
+          borderRadius: BorderRadius.circular(SizeConfig.height * 0.01),
         ),
         disabledBorder: OutlineInputBorder(
-          borderSide:  BorderSide(
-            color: ColorManager.grey,
+          borderSide: const BorderSide(
+            color: ColorManager.primaryColor,
             width: 1,
           ),
-          borderRadius: BorderRadius.circular(SizeConfig.height*0.01),
+          borderRadius: BorderRadius.circular(SizeConfig.height * 0.01),
         ),
         fillColor: Colors.blue,
       ),

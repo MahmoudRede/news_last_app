@@ -6,7 +6,7 @@ ThemeData getApplicationTheme (BuildContext context) {
 
   return ThemeData(
     useMaterial3: true,
-    fontFamily: 'Nunito',
+    fontFamily: 'Tajawal',
     colorScheme: ColorScheme.fromSeed(seedColor: ColorManager.white),
 
     /// AppBar Theme
@@ -28,9 +28,9 @@ ThemeData getApplicationTheme (BuildContext context) {
       headlineSmall: const TextStyle(
           fontSize: 13, fontFamily: 'Nunito', color: ColorManager.black),
       headlineMedium: TextStyle(
-          fontSize: MediaQuery.sizeOf(context).height*.025, fontFamily: 'Nunito', color: ColorManager.black),
-      headlineLarge: const TextStyle(
-          fontSize: 24, fontFamily: 'Nunito', color: ColorManager.black),
+          fontSize: MediaQuery.sizeOf(context).height*.029, fontFamily: 'Nunito', color: ColorManager.black),
+      headlineLarge:   TextStyle(
+          fontSize: MediaQuery.sizeOf(context).height*.04, fontFamily: 'Nunito', color: ColorManager.black),
     ),
 
 
