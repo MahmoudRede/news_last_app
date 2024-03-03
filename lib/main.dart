@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:news_last_app/presentation/screens/on_boarding_view/widgets/onboarding_constants.dart';
 import 'package:news_last_app/presentation/screens/start_screen/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:news_last_app/presentation/screens/splash_view/splash_view.dart';
@@ -23,13 +24,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
-import 'core/local/shared_preferences.dart';
-import 'presentation/screens/on_boarding_view/widgets/onboarding_constants.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await CacheHelper.init();
   runApp(MyApp(
     onBoarding: onBoarding,
   ));
@@ -86,4 +80,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
