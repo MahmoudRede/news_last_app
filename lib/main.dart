@@ -5,7 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
 import 'package:news_last_app/presentation/screens/bottom_navigation_bar/manager/bottom_navigation_bar_cubit.dart';
-import 'package:news_last_app/presentation/screens/home_screen/home_screen/home_screen.dart';
 import 'package:news_last_app/presentation/screens/on_boarding_view/widgets/onboarding_constants.dart';
 import 'package:news_last_app/styles/theme_manager/theme_manager.dart';
 
