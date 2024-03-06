@@ -2,6 +2,15 @@
 class Assets {
   Assets._();
 
+  static const String fontsNunitoBold = 'assets/fonts/Nunito-Bold.ttf';
+  static const String fontsNunitoMedium = 'assets/fonts/Nunito-Medium.ttf';
+  static const String fontsNunitoRegular = 'assets/fonts/Nunito-Regular.ttf';
+  static const String fontsPermanentMarkerRegular = 'assets/fonts/PermanentMarker-Regular.ttf';
+  static const String fontsTajawalBold = 'assets/fonts/Tajawal-Bold.ttf';
+  static const String fontsTajawalMedium = 'assets/fonts/Tajawal-Medium.ttf';
+  static const String fontsTajawalRegular = 'assets/fonts/Tajawal-Regular.ttf';
   static const String imagesFacebook = 'assets/images/facebook.png';
+  static const String translationsAr = 'assets/translations/ar.json';
+  static const String translationsEn = 'assets/translations/en.json';
 
 }

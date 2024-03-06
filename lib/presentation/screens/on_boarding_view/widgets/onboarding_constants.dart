@@ -6,7 +6,7 @@ import 'package:news_last_app/presentation/screens/start_screen/start_screen.dar
 
 bool onBoarding = CashHelper.getData(key: 'onBoarding') ?? false;
 
-final List<OnboardingModel> items = [
+final List<OnboardingModel> onBoardingItems = [
   OnboardingModel(
       image: Assets.imagesFacebook,
       title: 'Body 1',

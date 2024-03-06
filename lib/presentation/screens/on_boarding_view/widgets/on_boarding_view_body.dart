@@ -38,12 +38,12 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
   PageView onboardingItemBuilder() {
     return PageView.builder(
       itemBuilder: (context, index) => OnboardingItem(
-        onboardingModel: items[index],
+        onboardingModel: onBoardingItems[index],
       ),
       controller: onBoardController,
-      itemCount: items.length,
+      itemCount: onBoardingItems.length,
       onPageChanged: (int index) {
-        if (index == items.length - 1) {
+        if (index == onBoardingItems.length - 1) {
           setState(() {
             isLast = true;
           });

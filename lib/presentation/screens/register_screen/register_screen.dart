@@ -28,7 +28,7 @@ class RegisterScreen extends StatelessWidget {
           registerPhoneController.clear();
           registerPasswordController.clear();
           registerPasswordController.clear();
-          Get.offAll(() => const HomeScreen(),);
+          Get.offAll(() => const HomeView(),);
         }
       },
       builder: (context, state) {

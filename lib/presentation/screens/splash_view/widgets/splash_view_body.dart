@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:news_last_app/core/app_routes/app_routes.dart';
-import 'package:news_last_app/presentation/screens/home_screen/home_screen/home_screen.dart';
 import 'package:news_last_app/presentation/screens/on_boarding_view/on_boarding_view.dart';
 import 'package:news_last_app/presentation/screens/on_boarding_view/widgets/onboarding_constants.dart';
 import 'package:news_last_app/presentation/screens/splash_view/widgets/fade_widget.dart';
+import 'package:news_last_app/presentation/screens/start_screen/start_screen.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -55,7 +55,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 2), () {
       if(onBoarding){
-        customPushNavigator(context, const HomeScreen());
+        customPushNavigator(context, const StartScreen());
       }else{
         customPushNavigator(context, const OnboardingView());
       }

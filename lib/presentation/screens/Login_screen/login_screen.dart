@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
-import 'package:news_last_app/presentation/screens/home_screen/home_screen/home_screen.dart';
+import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
 import 'package:news_last_app/presentation/screens/register_screen/register_screen.dart';
 import 'package:news_last_app/presentation/widgets/default_button.dart';
 import 'package:news_last_app/presentation/widgets/default_text_field.dart';
@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          Get.offAll(() => const HomeScreen() );
+          Get.offAll(() => const AppLayout() );
         }
       },
       builder: (context, state) {

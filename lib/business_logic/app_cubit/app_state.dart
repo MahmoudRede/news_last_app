@@ -33,3 +33,4 @@ class SaveUserErrorState extends AppState{
 class GetUserLoadingState extends AppState{}
 class GetUserSuccessState extends AppState{}
 class GetUserErrorState extends AppState{}
+
