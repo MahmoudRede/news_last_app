@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_last_app/constants/firebase_errors.dart';
@@ -19,14 +18,14 @@ class AppCubit extends Cubit<AppState> {
   ////sign up////
   void createAccountWithFirebaseAuth(
       {required String password,
-        required String name,
-        required String emailAddress,
-        required String phoneNumber,
-        required BuildContext context}) async {
+      required String name,
+      required String emailAddress,
+      required String phoneNumber,
+      required BuildContext context}) async {
     try {
       emit(SignUpLoadingState());
       final credential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
@@ -58,11 +57,12 @@ class AppCubit extends Cubit<AppState> {
       }
     }
   }
+
   //// login ////
   Future<void> loginWithFirebaseAuth(
       {required BuildContext context,
-        required String emailAddress,
-        required String password}) async {
+      required String emailAddress,
+      required String password}) async {
     try {
       emit(LoginLoadingState());
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -80,8 +80,7 @@ class AppCubit extends Cubit<AppState> {
         return customToast(
             title: "تم تسجيل الدخول بنجاح", color: Colors.green.shade700);
       } else {
-        return customToast(
-            title: "خطأ في التسجيل", color: Colors.red.shade700);
+        return customToast(title: "خطأ في التسجيل", color: Colors.red.shade700);
       }
     } on FirebaseAuthException catch (e) {
       emit(LoginErrorState(e.toString()));
@@ -144,10 +143,10 @@ class AppCubit extends Cubit<AppState> {
     return FirebaseFirestore.instance
         .collection(UserModel.collectionName)
         .withConverter(
-      fromFirestore: (snapshot, options) =>
-          UserModel.fromJson(snapshot.data()!),
-      toFirestore: (value, options) => value.toJson(),
-    );
+          fromFirestore: (snapshot, options) =>
+              UserModel.fromJson(snapshot.data()!),
+          toFirestore: (value, options) => value.toJson(),
+        );
   }
 
   //// read user ////
@@ -157,5 +156,6 @@ class AppCubit extends Cubit<AppState> {
     var myUser = user.data();
     return myUser;
   }
+
 
 }

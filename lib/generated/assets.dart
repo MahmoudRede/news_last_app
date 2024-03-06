@@ -12,8 +12,5 @@ class Assets {
   static const String imagesFacebook = 'assets/images/facebook.png';
   static const String translationsAr = 'assets/translations/ar.json';
   static const String translationsEn = 'assets/translations/en.json';
-=======
-  static const String imagesFacebook = 'assets/images/facebook.png';
->>>>>>> origin/master
 
 }

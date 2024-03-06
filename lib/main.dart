@@ -3,12 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
+import 'package:news_last_app/presentation/screens/bottom_navigation_bar/manager/bottom_navigation_bar_cubit.dart';
+import 'package:news_last_app/presentation/screens/home_screen/home_screen/home_screen.dart';
 import 'package:news_last_app/presentation/screens/on_boarding_view/widgets/onboarding_constants.dart';
-import 'package:news_last_app/presentation/screens/start_screen/start_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:news_last_app/presentation/screens/splash_view/splash_view.dart';
 import 'package:news_last_app/styles/theme_manager/theme_manager.dart';
 
+import 'block_observer.dart';
 import 'business_logic/app_cubit/app_cubit.dart';
 import 'business_logic/localization_cubit/app_localization.dart';
 import 'business_logic/localization_cubit/localization_cubit.dart';
@@ -18,6 +19,7 @@ import 'core/local/cash_helper.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await CashHelper.init();
   uId = CashHelper.getData(key: 'isUid');
@@ -44,6 +46,7 @@ class MyApp extends StatelessWidget {
                 AppCubit()..getUser(id: uId == null ? uId = '' : uId!)),
         BlocProvider(
             create: (context) => LocalizationCubit()..fetchLocalization()),
+        BlocProvider(create: (context) => BottomNavigationBarCubit()),
       ],
       child: BlocConsumer<LocalizationCubit, LocalizationStates>(
         listener: (context, state) {},
@@ -73,7 +76,7 @@ class MyApp extends StatelessWidget {
               }
               return supportLang.first;
             },
-            home: const StartScreen(),
+            home: const AppLayout(),
           );
         },
       ),

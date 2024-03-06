@@ -25,7 +25,7 @@ class OnboardingActions extends StatelessWidget {
             activeDotColor: Colors.tealAccent,
             dotColor: Colors.blue,
           ),
-          count: items.length,
+          count: onBoardingItems.length,
         ),
         const Spacer(),
         FloatingActionButton(
