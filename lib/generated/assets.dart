@@ -10,6 +10,7 @@ class Assets {
   static const String fontsTajawalMedium = 'assets/fonts/Tajawal-Medium.ttf';
   static const String fontsTajawalRegular = 'assets/fonts/Tajawal-Regular.ttf';
   static const String imagesFacebook = 'assets/images/facebook.png';
+  static const String imagesProfile = 'assets/images/profile.jpg';
   static const String translationsAr = 'assets/translations/ar.json';
   static const String translationsEn = 'assets/translations/en.json';
 
