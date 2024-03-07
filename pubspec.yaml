@@ -53,6 +53,8 @@ dependencies:
   cloud_firestore: ^4.8.0
   firebase_core: ^2.13.1
   firebase_auth: ^4.6.2
+  table_calendar: ^3.0.9
+  cached_network_image: ^3.3.1
 
 
 

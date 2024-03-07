@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_last_app/presentation/screens/on_boarding_view/widgets/skip_text_button.dart';
+import 'package:news_last_app/styles/app_size/app_size_config.dart';
 
 import 'on_boarding_item.dart';
 import 'onboarding_actions.dart';
@@ -25,8 +26,9 @@ class _OnboardingViewBodyState extends State<OnboardingViewBody> {
         children: [
           const SkipTextButton(),
           Expanded(child: onboardingItemBuilder()),
-          const SizedBox(
-            height: 50.0,
+
+            SizedBox(
+            height: SizeConfig.height * 0.01,
           ),
           OnboardingActions(
               onBoardController: onBoardController, isLast: isLast),

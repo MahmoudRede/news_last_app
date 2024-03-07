@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_last_app/data/models/on_boarding_model.dart';
+import 'package:news_last_app/styles/app_size/app_size_config.dart';
+import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
 class OnboardingItem extends StatelessWidget {
   const OnboardingItem({super.key, required this.onboardingModel});
@@ -20,11 +22,10 @@ class OnboardingItem extends StatelessWidget {
           ),
         ),
         Text(
-          onboardingModel.title,
-          style: const TextStyle(
-              color: Colors.white,
-              fontWeight:FontWeight.bold,
-              fontSize: 30.0
+          onboardingModel.content,
+          style:   TextStyle(
+              color: ColorManager.primaryColor,
+               fontSize: SizeConfig.headline2Size
           ),
         ),
         const SizedBox(
@@ -32,9 +33,9 @@ class OnboardingItem extends StatelessWidget {
         ),
         Text(
           onboardingModel.body,
-          style:const TextStyle(
-              color: Colors.white,
-              fontSize: 20.0
+          style:  TextStyle(
+              color: ColorManager.primaryColor,
+              fontSize: SizeConfig.headline2Size
           ),
         ),
       ],

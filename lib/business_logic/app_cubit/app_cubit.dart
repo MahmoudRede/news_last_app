@@ -157,5 +157,17 @@ class AppCubit extends Cubit<AppState> {
     return myUser;
   }
 
+  /// toggle between home tabs
+  int selectedIndex = 0;
+  void changeHomeTabs(int index) {
+    selectedIndex = index;
+    emit(ChangeHomeTabsState());
+  }
+
+  int eventsIndex = 0;
+  void changeEventsTabs(int index) {
+    eventsIndex = index;
+    emit(ChangeEventsTabsState());
+  }
 
 }

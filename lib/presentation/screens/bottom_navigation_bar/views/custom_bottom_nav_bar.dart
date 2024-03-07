@@ -16,7 +16,8 @@ class CustomBottomNavBar extends StatelessWidget {
       builder: (context, state) {
         BottomNavigationBarCubit cubit = BottomNavigationBarCubit.get(context);
         return BottomNavigationBar(
-          elevation: 0,
+             elevation: MediaQuery.sizeOf(context).height*.02,
+            backgroundColor:  ColorManager.white,
             selectedItemColor: ColorManager.primaryColor,
             onTap: (index) {
               cubit.changeBotNavViews(index);

@@ -34,3 +34,6 @@ class GetUserLoadingState extends AppState{}
 class GetUserSuccessState extends AppState{}
 class GetUserErrorState extends AppState{}
 
+class ChangeHomeTabsState extends AppState{}
+class ChangeEventsTabsState extends AppState{}
+

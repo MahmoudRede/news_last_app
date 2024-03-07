@@ -14,7 +14,7 @@ class OnboardingView extends StatelessWidget {
         statusBarColor: Colors.transparent,
       ),
       child: Scaffold(
-        backgroundColor: ColorManager.darkBlueColor,
+        backgroundColor: ColorManager.white,
           body: OnboardingViewBody(),
     ));
   }

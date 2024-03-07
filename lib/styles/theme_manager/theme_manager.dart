@@ -26,11 +26,11 @@ ThemeData getApplicationTheme (BuildContext context) {
     /// text theme
     textTheme:  TextTheme(
       headlineSmall: const TextStyle(
-          fontSize: 13, fontFamily: 'Nunito', color: ColorManager.black),
+          fontSize: 13, fontFamily: 'Tajawal', color: ColorManager.black),
       headlineMedium: TextStyle(
-          fontSize: MediaQuery.sizeOf(context).height*.029, fontFamily: 'Nunito', color: ColorManager.black),
+          fontSize: MediaQuery.sizeOf(context).height*.029, fontFamily: 'Tajawal', color: ColorManager.black),
       headlineLarge:   TextStyle(
-          fontSize: MediaQuery.sizeOf(context).height*.04, fontFamily: 'Nunito', color: ColorManager.black),
+          fontSize: MediaQuery.sizeOf(context).height*.04, fontFamily: 'Tajawal', color: ColorManager.black),
     ),
 
 

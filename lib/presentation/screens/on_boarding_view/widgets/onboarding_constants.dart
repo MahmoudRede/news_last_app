@@ -8,15 +8,20 @@ bool onBoarding = CashHelper.getData(key: 'onBoarding') ?? false;
 
 final List<OnboardingModel> onBoardingItems = [
   OnboardingModel(
-      image: Assets.imagesFacebook,
+      image: "assets/images/onboarding_news.jpg",
+      content: 'A freelancer is a self-employed individual who offers services to clients on a project basis, often working remotely and managing their own business',
       title: 'Body 1',
       body: 'handleWindowFocusChanged mWindowFocusChanged'),
   OnboardingModel(
-      image: Assets.imagesFacebook,
+      image: "assets/images/onboarding_add_event.jpg",
+      content:
+          'We ate constantly adding your favourite restaurant throughout the territory and around your area carefully selected',
       title: 'Body 2',
       body: 'handleWindowFocusChanged mWindowFocusChanged'),
   OnboardingModel(
-      image: Assets.imagesFacebook,
+      image: "assets/images/onboarding_share.jpg",
+      content:
+          ' it is easy to determine the exact number of calories consumed at each meal',
       title: 'Body 3',
       body: 'handleWindowFocusChanged mWindowFocusChanged'),
 ];

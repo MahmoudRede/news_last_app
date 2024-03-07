@@ -29,6 +29,7 @@ class OnboardingActions extends StatelessWidget {
         ),
         const Spacer(),
         FloatingActionButton(
+          backgroundColor: ColorManager.blue.withOpacity(.6),
           onPressed: () {
             onBoardController.nextPage(
                 duration: const Duration(milliseconds: 750),
@@ -39,7 +40,7 @@ class OnboardingActions extends StatelessWidget {
           },
           child: const Icon(
             Icons.arrow_forward_ios_rounded,
-            color: ColorManager.black,
+            color: ColorManager.white,
           ),
         )
       ],
