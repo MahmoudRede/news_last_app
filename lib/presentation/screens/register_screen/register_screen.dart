@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
 import 'package:news_last_app/presentation/screens/Login_screen/login_screen.dart';
+import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
 import 'package:news_last_app/presentation/screens/home_screen/home_screen/home_screen.dart';
 import 'package:news_last_app/presentation/widgets/default_button.dart';
 import 'package:news_last_app/presentation/widgets/default_text_field.dart';
@@ -28,7 +29,7 @@ class RegisterScreen extends StatelessWidget {
           registerPhoneController.clear();
           registerPasswordController.clear();
           registerPasswordController.clear();
-          Get.offAll(() => const HomeView(),);
+          Get.offAll(() => const AppLayout(),);
         }
       },
       builder: (context, state) {
