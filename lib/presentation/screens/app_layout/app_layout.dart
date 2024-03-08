@@ -19,17 +19,21 @@ class AppLayout extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: Text(cubit.titles[cubit.currentIndex]),
+            title: Text(cubit.titles[cubit.currentIndex],
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(color: ColorManager.white)),
             leading: const Icon(Icons.notifications),
-            actions:  [
+            actions: [
               Padding(
                 padding: const EdgeInsets.only(left: 8),
-                child: IconButton(icon:const Icon(Icons.settings) ,onPressed:(){
-                  customPushNavigator(context, const SettingsView());
-                } ,   ),
+                child: IconButton(
+                  icon: const Icon(Icons.settings),
+                  onPressed: () {},
+                ),
               )
             ],
-
           ),
           body: cubit.views[cubit.currentIndex],
           bottomNavigationBar: const CustomBottomNavBar(),

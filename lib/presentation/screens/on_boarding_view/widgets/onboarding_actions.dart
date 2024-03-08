@@ -29,7 +29,7 @@ class OnboardingActions extends StatelessWidget {
         ),
         const Spacer(),
         FloatingActionButton(
-          backgroundColor: ColorManager.blue.withOpacity(.6),
+          backgroundColor: ColorManager.blue,
           onPressed: () {
             onBoardController.nextPage(
                 duration: const Duration(milliseconds: 750),
