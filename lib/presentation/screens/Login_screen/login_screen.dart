@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
 import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
 import 'package:news_last_app/presentation/screens/register_screen/register_screen.dart';
@@ -29,13 +30,7 @@ class LoginScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: ColorManager.white,
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-            systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Colors.black,
-              statusBarIconBrightness: Brightness.light,
-              statusBarBrightness: Brightness.light,
-            ),
+            toolbarHeight: 0.0,
           ),
           body: SizedBox(
             width: MediaQuery.of(context).size.width,
@@ -43,119 +38,123 @@ class LoginScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Text(
-                        "Logo here!",
-                        style: TextStyle(
-                            color: ColorManager.primaryColor,
-                            fontSize: SizeConfig.headline3Size),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * .05,
                       ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .1,
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        "مرحباً!",
-                        style: TextStyle(
-                          color: ColorManager.primaryColor,
-                          fontSize: SizeConfig.headline1Size,
+                      Lottie.asset(
+                        'assets/images/login.json',
+                        height: MediaQuery.of(context).size.height * .3,
+                        width: MediaQuery.of(context).size.height * .3,
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          "مرحباً!",
+                          style: TextStyle(
+                            color: ColorManager.primaryColor,
+                            fontSize: SizeConfig.headline2Size,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .05,
-                    ),
-                    Form(
-                      key: loginFormKey,
-                      child: Column(
-                        children: [
-                          /// email
-                          DefaultTextField(
-                              controller: emailController,
-                              hintText: "البريد الالكتروني",
-                              isPassword: false,
-                              validator: (validator) {
-                                if (validator!.trim()=="") {
-                                  return "أدخل البريد الالكتروني";
-                                }
-                                return null;
-                              },
-                              keyboardType: TextInputType.emailAddress,
-                              textInputAction: TextInputAction.next,
-                              onTap: () {}),
-                          SizedBox(
-                            height: SizeConfig.height * .03,
-                          ),
-
-                          /// password
-                          DefaultTextField(
-                              controller: passwordController,
-                              hintText: "كلمة المرور",
-                              isPassword: true,
-                              validator: (validator) {
-                                if (validator!.trim()=="") {
-                                  return "أدخل كلمة المرور";
-                                }
-                                return null;
-                              },
-                              keyboardType: TextInputType.text,
-                              textInputAction: TextInputAction.done,
-                              onTap: () {}),
-                          SizedBox(
-                            height: SizeConfig.height * .04,
-                          ),
-
-                          /// login button
-                          state is LoginLoadingState ? const CircularProgressIndicator( color: ColorManager.primaryColor,) :
-                           DefaultButton(
-                            onPressed: () {
-                              if (loginFormKey.currentState!.validate()) {
-                                cubit.loginWithFirebaseAuth(
-                                    context: context,
-                                    emailAddress: emailController.text,
-                                    password: passwordController.text);
-                              }
-                            },
-                            backGroundColor: ColorManager.primaryColor,
-                            height: MediaQuery.of(context).size.height * .06,
-                            width: SizeConfig.height * .5,
-                            content: Text("تسجيل الدخول",
-                                style: TextStyle(
-                                    color: ColorManager.white,
-                                    fontSize: SizeConfig.headline3Size)),
-                          ),
-                          SizedBox(
-                            height: SizeConfig.height * .04,
-                          ),
-
-                          /// don't have an account
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "ليس لديك حساب؟",
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(() => const RegisterScreen());
-                                },
-                                child: const Text(
-                                  "إنشاء حساب",
-                                  style: TextStyle(
-                                      color: ColorManager.primaryColor),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * .05,
                       ),
-                    ),
-                  ],
+                      Form(
+                        key: loginFormKey,
+                        child: Column(
+                          children: [
+                            /// email
+                            DefaultTextField(
+                                controller: emailController,
+                                hintText: "البريد الالكتروني",
+                                isPassword: false,
+                                validator: (validator) {
+                                  if (validator!.trim()=="") {
+                                    return "أدخل البريد الالكتروني";
+                                  }
+                                  return null;
+                                },
+                                keyboardType: TextInputType.emailAddress,
+                                textInputAction: TextInputAction.next,
+                                onTap: () {}),
+                            SizedBox(
+                              height: SizeConfig.height * .03,
+                            ),
+
+                            /// password
+                            DefaultTextField(
+                                controller: passwordController,
+                                hintText: "كلمة المرور",
+                                isPassword: true,
+                                validator: (validator) {
+                                  if (validator!.trim()=="") {
+                                    return "أدخل كلمة المرور";
+                                  }
+                                  return null;
+                                },
+                                keyboardType: TextInputType.text,
+                                textInputAction: TextInputAction.done,
+                                onTap: () {}),
+                            SizedBox(
+                              height: SizeConfig.height * .04,
+                            ),
+
+                            /// login button
+                            state is LoginLoadingState ? const CircularProgressIndicator( color: ColorManager.primaryColor,) :
+                             DefaultButton(
+                              onPressed: () {
+                                if (loginFormKey.currentState!.validate()) {
+                                  cubit.loginWithFirebaseAuth(
+                                      context: context,
+                                      emailAddress: emailController.text,
+                                      password: passwordController.text);
+                                }
+                              },
+                              backGroundColor: ColorManager.primaryColor,
+                              height: MediaQuery.of(context).size.height * .06,
+                              width: SizeConfig.height * .5,
+                              content: Text("تسجيل الدخول",
+                                  style: TextStyle(
+                                      color: ColorManager.white,
+                                      fontSize: SizeConfig.headline3Size)),
+                            ),
+                            SizedBox(
+                              height: SizeConfig.height * .04,
+                            ),
+
+                            /// don't have an account
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  "ليس لديك حساب؟",
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.to(() => const RegisterScreen());
+                                  },
+                                  child:  const Text(
+                                    "إنشاء حساب",
+                                    style: TextStyle(
+                                        color: ColorManager.primaryColor,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

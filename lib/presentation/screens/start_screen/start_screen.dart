@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:news_last_app/business_logic/localization_cubit/localization_cubit.dart';
 import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/presentation/screens/Login_screen/login_screen.dart';
@@ -16,54 +17,8 @@ class StartScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
-        actions: [
-          GestureDetector(
-            onTap: () {
-              if (CashHelper.getData(key: CashHelper.languageKey).toString() ==
-                  'en') {
-                LocalizationCubit.get(context).changeLanguage(code: 'ar');
-              } else {
-                LocalizationCubit.get(context).changeLanguage(code: 'en');
-              }
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  "العربية",
-                  style: TextStyle(
-                    color: ColorManager.primaryColor,
-                    fontSize: SizeConfig.headline3Size,
-                  )
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .005,
-                ),
-                CashHelper.getData(key: CashHelper.languageKey).toString() ==
-                        'en'
-                    ? Container(
-                        width: MediaQuery.of(context).size.height * .06,
-                        height: MediaQuery.of(context).size.height * .0035,
-                        color: ColorManager.primaryColor,
-                      )
-                    : Container(
-                        width: MediaQuery.of(context).size.height * .03,
-                        height: MediaQuery.of(context).size.height * .0035,
-                        color: ColorManager.primaryColor,
-                      ),
-              ],
-            ),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.height * .025,
-          ),
-        ],
         elevation: 0.0,
         backgroundColor: ColorManager.white,
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarIconBrightness: Brightness.dark,
-          statusBarColor: ColorManager.white,
-        ),
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -72,11 +27,13 @@ class StartScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "Logo here!",
-              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                    color: ColorManager.black,
-                  ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .05,
+            ),
+            Lottie.asset(
+              'assets/images/login.json',
+              height: MediaQuery.of(context).size.height * .3,
+              width: MediaQuery.of(context).size.height * .3,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .05,
@@ -94,12 +51,12 @@ class StartScreen extends StatelessWidget {
             Text(
               "يرجي تسجيل الدخول إلي حسابك",
               style: TextStyle(
-                color: ColorManager.primaryColor,
-                fontSize: SizeConfig.headline2Size,
+                color: ColorManager.grey,
+                fontSize: SizeConfig.headline3Size,
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * .2,
+              height: MediaQuery.of(context).size.height * .07,
             ),
             DefaultButton(
               onPressed: () {

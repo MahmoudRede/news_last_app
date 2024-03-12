@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
 import 'package:news_last_app/presentation/screens/Login_screen/login_screen.dart';
 import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
@@ -37,13 +38,8 @@ class RegisterScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: ColorManager.white,
           appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
-              systemOverlayStyle: const SystemUiOverlayStyle(
-                statusBarColor: Colors.black,
-                statusBarIconBrightness: Brightness.light,
-                statusBarBrightness: Brightness.light,
-              )),
+              toolbarHeight: 0.0,
+          ),
           body: SizedBox(
             height: SizeConfig.height,
             width: SizeConfig.width,
@@ -54,23 +50,19 @@ class RegisterScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Center(
-                      child: Text(
-                        "Logo here!",
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .headlineMedium!
-                            .copyWith(
-                            color: ColorManager.primaryColor,
-                            fontSize: SizeConfig.headline1Size),
-                      ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * .02,
+                    ),
+                    Lottie.asset(
+                      'assets/images/login.json',
+                      height: MediaQuery.of(context).size.height * .25,
+                      width: MediaQuery.of(context).size.height * .25,
                     ),
                     SizedBox(
                       height: MediaQuery
                           .of(context)
                           .size
-                          .height * .08,
+                          .height * .02,
                     ),
                     Align(
                       alignment: Alignment.centerRight,
@@ -78,7 +70,7 @@ class RegisterScreen extends StatelessWidget {
                           "إنشاء حساب جديد",
                           style: TextStyle(
                               color: ColorManager.primaryColor,
-                              fontSize: SizeConfig.headline1Size
+                              fontSize: SizeConfig.headline3Size
                           )
                       ),
                     ),
@@ -86,7 +78,7 @@ class RegisterScreen extends StatelessWidget {
                       height: MediaQuery
                           .of(context)
                           .size
-                          .height * .05,
+                          .height * .02,
                     ),
                     Form(
                       key: registerFormKey,

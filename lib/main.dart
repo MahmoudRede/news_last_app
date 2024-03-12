@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
               }
               return supportLang.first;
             },
-            home: const OnboardingView(),
+              home: const OnboardingView(),
           );
         },
       ),

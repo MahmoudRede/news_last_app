@@ -20,7 +20,7 @@ class SkipTextButton extends StatelessWidget {
           child:   Text(
             'Skip',
             style: TextStyle(
-              color: ColorManager.blue,
+              color: ColorManager.primaryColor,
               fontSize: SizeConfig.headline2Size,
             ),
           )),

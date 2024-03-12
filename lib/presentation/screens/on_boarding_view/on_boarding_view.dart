@@ -9,13 +9,12 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 0.0,
       ),
-      child: Scaffold(
         backgroundColor: ColorManager.white,
-          body: OnboardingViewBody(),
-    ));
+          body: const OnboardingViewBody(),
+    );
   }
 }
