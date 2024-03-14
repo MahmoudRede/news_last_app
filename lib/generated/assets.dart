@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String assetsImagesNews = 'assets/images/news.png';
   static const String fontsNunitoBold = 'assets/fonts/Nunito-Bold.ttf';
   static const String fontsNunitoMedium = 'assets/fonts/Nunito-Medium.ttf';
   static const String fontsNunitoRegular = 'assets/fonts/Nunito-Regular.ttf';
@@ -9,8 +10,20 @@ class Assets {
   static const String fontsTajawalBold = 'assets/fonts/Tajawal-Bold.ttf';
   static const String fontsTajawalMedium = 'assets/fonts/Tajawal-Medium.ttf';
   static const String fontsTajawalRegular = 'assets/fonts/Tajawal-Regular.ttf';
+  static const String imagesDead = 'assets/images/dead.png';
+  static const String imagesEvents = 'assets/images/events.png';
   static const String imagesFacebook = 'assets/images/facebook.png';
+  static const String imagesLogin = 'assets/images/login.json';
+  static const String imagesNews = 'assets/images/news.jpg';
+  static const String imagesOnBoarding1 = 'assets/images/onBoarding1.json';
+  static const String imagesOnBoarding2 = 'assets/images/onBoarding2.json';
+  static const String imagesOnBoarding3 = 'assets/images/onBoarding3.json';
+  static const String imagesOnboardingAddEvent = 'assets/images/onboarding_add_event.jpg';
+  static const String imagesOnboardingNews = 'assets/images/onboarding_news.jpg';
+  static const String imagesOnboardingShare = 'assets/images/onboarding_share.jpg';
+  static const String imagesPicture = 'assets/images/picture.png';
   static const String imagesProfile = 'assets/images/profile.jpg';
+  static const String imagesVideo = 'assets/images/video.png';
   static const String translationsAr = 'assets/translations/ar.json';
   static const String translationsEn = 'assets/translations/en.json';
 
