@@ -30,7 +30,9 @@ class AppLayout extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 8),
                 child: IconButton(
                   icon: const Icon(Icons.settings),
-                  onPressed: () {},
+                  onPressed: () {
+                    customPushNavigator(context, const SettingsView());
+                  },
                 ),
               )
             ],
