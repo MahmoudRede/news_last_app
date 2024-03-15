@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_last_app/presentation/settings_view/widgets/settings_list_view_item.dart';
+import 'package:news_last_app/presentation/screens/settings_view/widgets/settings_list_view_item.dart';
 
 import '../data/settings_item_model.dart';
 

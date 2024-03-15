@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:news_last_app/presentation/screens/home_screen/models/news_item_model.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 
 class NewsItem extends StatelessWidget {
-  const NewsItem({super.key});
+  const NewsItem({super.key, required this.newsItemModel});
 
+  final NewsItemModel newsItemModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,13 +25,13 @@ class NewsItem extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.asset("assets/images/news.jpg"),
+                  child: Image.network('${newsItemModel.image}'),
                 ),
                 SizedBox(
                   height: SizeConfig.height*0.015,
                 ),
                 Text(
-                    'عنوان الخبر',
+                    '${newsItemModel.headline}',
                   textAlign: TextAlign.start,
                   style:   TextStyle(
                     color: Colors.black,
@@ -41,7 +43,7 @@ class NewsItem extends StatelessWidget {
                   height: SizeConfig.height*0.01,
                 ),
                 Text(
-                   'تفاصيل الخبر',
+                  '${newsItemModel.details}',
                   textAlign: TextAlign.start,
                   style:   TextStyle(
                     color: Colors.black,
@@ -51,9 +53,6 @@ class NewsItem extends StatelessWidget {
                   SizedBox(
                   height: SizeConfig.height*0.01,
                 ),
-
-
-
               ],
             ),
           ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_last_app/generated/assets.dart';
-import 'package:news_last_app/presentation/screens/add_post_view/widgets/grid_view_item.dart';
 import 'package:news_last_app/presentation/screens/add_thanks_screen/add_thanks_screen.dart';
 import 'models/add_post_model.dart';
 

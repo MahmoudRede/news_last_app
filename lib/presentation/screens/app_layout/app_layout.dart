@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 import 'package:news_last_app/core/app_routes/app_routes.dart';
-import 'package:news_last_app/presentation/settings_view/settings_view.dart';
 
 import '../bottom_navigation_bar/manager/bottom_navigation_bar_cubit.dart';
 import '../bottom_navigation_bar/views/custom_bottom_nav_bar.dart';
+import '../settings_view/settings_view.dart';
 
 class AppLayout extends StatelessWidget {
   const AppLayout({super.key});
