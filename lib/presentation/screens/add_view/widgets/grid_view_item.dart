@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:news_last_app/presentation/screens/add_post_view/models/add_post_model.dart';
+
+import '../models/add_grid_view_model.dart';
 
 class GridViewItem extends StatelessWidget {
   const GridViewItem({super.key, required this.addPostModel, });
-  final AddPostModel addPostModel;
+  final AddGridViewModel addPostModel;
 
   @override
   Widget build(BuildContext context) {

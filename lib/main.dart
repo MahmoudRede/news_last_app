@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:news_last_app/presentation/screens/Login_screen/login_screen.dart';
+import 'package:news_last_app/presentation/screens/add_view/manager/news_cubit.dart';
 import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
 import 'package:news_last_app/presentation/screens/bottom_navigation_bar/manager/bottom_navigation_bar_cubit.dart';
 import 'package:news_last_app/presentation/screens/on_boarding_view/on_boarding_view.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => LocalizationCubit()..fetchLocalization()),
         BlocProvider(create: (context) => BottomNavigationBarCubit()),
+        BlocProvider(create: (context) => NewsCubit()..getNews()),
       ],
       child: BlocConsumer<LocalizationCubit, LocalizationStates>(
         listener: (context, state) {},

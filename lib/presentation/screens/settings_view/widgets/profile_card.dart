@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../generated/assets.dart';
-import '../../../styles/app_size/app_size_config.dart';
-import '../../../styles/color_manager/color_manager.dart';
+import '../../../../generated/assets.dart';
+import '../../../../styles/app_size/app_size_config.dart';
+import '../../../../styles/color_manager/color_manager.dart';
+
+
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
