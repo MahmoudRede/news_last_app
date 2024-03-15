@@ -17,7 +17,7 @@ class NewsCubit extends Cubit<NewsState> {
 
   var picker = ImagePicker();
   File? newsImage;
-/////
+///////
   Future<void> getImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
