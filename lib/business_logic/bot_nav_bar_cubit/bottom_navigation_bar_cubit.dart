@@ -6,9 +6,10 @@ import 'package:news_last_app/presentation/screens/favorite_view/favorite_view.d
 import 'package:news_last_app/presentation/screens/home_screen/home_screen/home_screen.dart';
 import 'package:news_last_app/presentation/screens/profile_view/profile_view.dart';
 
-import '../../add_view/add_post_view.dart';
+import '../../presentation/screens/add_view/add_post_view.dart';
+import 'bottom_navigation_bar_state.dart';
 
-part 'bottom_navigation_bar_state.dart';
+
 
 class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
   BottomNavigationBarCubit() : super(BottomNavigationBarInitial());

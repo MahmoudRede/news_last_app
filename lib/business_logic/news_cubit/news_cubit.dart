@@ -6,10 +6,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
+import '../../presentation/screens/home_screen/models/news_item_model.dart';
 
-import '../../home_screen/models/news_item_model.dart';
-
-part 'news_state.dart';
+part '../../../../business_logic/news_cubit/news_state.dart';
 
 class NewsCubit extends Cubit<NewsState> {
   NewsCubit() : super(NewsInitial());
@@ -18,7 +17,7 @@ class NewsCubit extends Cubit<NewsState> {
 
   var picker = ImagePicker();
   File? newsImage;
-
+///////
   Future<void> getImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {

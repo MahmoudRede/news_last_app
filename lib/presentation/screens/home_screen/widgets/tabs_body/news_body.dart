@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_last_app/presentation/screens/add_view/manager/news_cubit.dart';
 import 'package:news_last_app/presentation/screens/home_screen/widgets/news_item.dart';
-import 'package:news_last_app/styles/app_size/app_size_config.dart';
+
+import '../../../../../business_logic/news_cubit/news_cubit.dart';
 
 class NewsBody extends StatelessWidget {
   const NewsBody({super.key});
