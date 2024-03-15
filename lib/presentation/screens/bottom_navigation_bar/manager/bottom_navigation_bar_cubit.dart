@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:news_last_app/presentation/screens/add_post_view/add_post_view.dart';
 import 'package:news_last_app/presentation/screens/events_view/events_view.dart';
 import 'package:news_last_app/presentation/screens/favorite_view/favorite_view.dart';
 import 'package:news_last_app/presentation/screens/home_screen/home_screen/home_screen.dart';
 import 'package:news_last_app/presentation/screens/profile_view/profile_view.dart';
+
+import '../../add_view/add_post_view.dart';
 
 part 'bottom_navigation_bar_state.dart';
 

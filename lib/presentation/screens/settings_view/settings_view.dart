@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_last_app/presentation/settings_view/widgets/settings_view_body.dart';
+import 'package:news_last_app/presentation/screens/settings_view/widgets/settings_view_body.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});

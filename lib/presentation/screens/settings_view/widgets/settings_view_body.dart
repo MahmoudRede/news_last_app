@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_last_app/presentation/settings_view/widgets/profile_card.dart';
-import 'package:news_last_app/presentation/settings_view/widgets/settings_list_view.dart';
+import 'package:news_last_app/presentation/screens/settings_view/widgets/profile_card.dart';
+import 'package:news_last_app/presentation/screens/settings_view/widgets/settings_list_view.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
 class SettingsViewBody extends StatelessWidget {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_last_app/presentation/settings_view/data/settings_item_model.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
+
+import '../data/settings_item_model.dart';
 
 class SettingsListViewItem extends StatelessWidget {
   const SettingsListViewItem({super.key, required this.settingsItemModel});
