@@ -37,3 +37,13 @@ class GetUserErrorState extends AppState{}
 class ChangeHomeTabsState extends AppState{}
 class ChangeEventsTabsState extends AppState{}
 
+/// Get Thanks Image Picker
+class GetThanksImagePickerLoadingState extends AppState{}
+class GetThanksImagePickerSuccessState extends AppState{}
+class GetThanksImagePickerErrorState extends AppState{}
+/// upload thanks image
+class UploadThanksImageLoadingState extends AppState{}
+class UploadThanksImageSuccessState extends AppState{}
+class UploadThanksImageErrorState extends AppState{}
+
+

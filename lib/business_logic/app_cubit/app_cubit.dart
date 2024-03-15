@@ -1,19 +1,20 @@
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:news_last_app/constants/firebase_errors.dart';
 import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/data/models/user_model.dart';
 import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
-
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppInitial());
-
   static AppCubit get(context) => BlocProvider.of<AppCubit>(context);
+
 
   ////sign up////
   void createAccountWithFirebaseAuth(
@@ -159,15 +160,41 @@ class AppCubit extends Cubit<AppState> {
 
   /// toggle between home tabs
   int selectedIndex = 0;
+
   void changeHomeTabs(int index) {
     selectedIndex = index;
     emit(ChangeHomeTabsState());
   }
 
   int eventsIndex = 0;
+
   void changeEventsTabs(int index) {
     eventsIndex = index;
     emit(ChangeEventsTabsState());
   }
 
+  var picker = ImagePicker();
+  String thanksImagePath = '';
+  File? thanksImage;
+
+  // Future<void> getThanksImage() async {
+  //   emit(GetThanksImagePickerLoadingState());
+  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+  //   if (pickedFile != null) {
+  //     thanksImage = File(pickedFile.path);
+  //     await firebase_storage.FirebaseStorage.instance
+  //         .ref()
+  //         .child('thanksImage/${Uri.file(thanksImage!.path).pathSegments.last}')
+  //         .putFile(thanksImage!)
+  //         .then((value) {
+  //       value.ref.getDownloadURL().then((value) {
+  //         thanksImagePath = value;
+  //         emit(GetThanksImagePickerSuccessState());
+  //       });
+  //     });
+  //   } else {
+  //     debugPrint('No image selected');
+  //     emit(GetThanksImagePickerErrorState());
+  //   }
+  // }
 }
