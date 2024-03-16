@@ -9,6 +9,7 @@ import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/data/models/user_model.dart';
 import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -177,24 +178,24 @@ class AppCubit extends Cubit<AppState> {
   String thanksImagePath = '';
   File? thanksImage;
 
-  // Future<void> getThanksImage() async {
-  //   emit(GetThanksImagePickerLoadingState());
-  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-  //   if (pickedFile != null) {
-  //     thanksImage = File(pickedFile.path);
-  //     await firebase_storage.FirebaseStorage.instance
-  //         .ref()
-  //         .child('thanksImage/${Uri.file(thanksImage!.path).pathSegments.last}')
-  //         .putFile(thanksImage!)
-  //         .then((value) {
-  //       value.ref.getDownloadURL().then((value) {
-  //         thanksImagePath = value;
-  //         emit(GetThanksImagePickerSuccessState());
-  //       });
-  //     });
-  //   } else {
-  //     debugPrint('No image selected');
-  //     emit(GetThanksImagePickerErrorState());
-  //   }
-  // }
+  Future<void> getThanksImage() async {
+    emit(GetThanksImagePickerLoadingState());
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      thanksImage = File(pickedFile.path);
+      await firebase_storage.FirebaseStorage.instance
+          .ref()
+          .child('thanksImage/${Uri.file(thanksImage!.path).pathSegments.last}')
+          .putFile(thanksImage!)
+          .then((value) {
+        value.ref.getDownloadURL().then((value) {
+          thanksImagePath = value;
+          emit(GetThanksImagePickerSuccessState());
+        });
+      });
+    } else {
+      debugPrint('No image selected');
+      emit(GetThanksImagePickerErrorState());
+    }
+  }
 }
