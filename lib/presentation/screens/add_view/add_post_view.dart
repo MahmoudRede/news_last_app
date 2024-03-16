@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_last_app/core/app_routes/app_routes.dart';
 import 'package:news_last_app/generated/assets.dart';
 import 'package:news_last_app/presentation/screens/add_news_view/add_news_view.dart';
+import 'package:news_last_app/presentation/screens/add_thanks_screen/add_thanks_screen.dart';
 import 'package:news_last_app/presentation/screens/add_view/widgets/grid_view_item.dart';
 
 import 'models/add_grid_view_model.dart';
@@ -29,10 +30,14 @@ class _AddPostViewState extends State<AddPostView> {
           image: Assets.imagesVideo, title: 'اضافة\nفيديو', () => null),
       AddGridViewModel(
           image: Assets.imagesDead, title: 'اضافة\nحالة وفاة', () => null),
+      AddGridViewModel(
+          image: Assets.donating, title: 'اضافة\nتهنئة', () => null),
+      AddGridViewModel(
+          image: Assets.thanks, title: 'اضافة\شكر', () => customPushNavigator(context, const AddThanksScreen())),
     ];
     return GridView.count(
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       crossAxisCount: 2,
       mainAxisSpacing: 10.0,
       crossAxisSpacing: 2.0,
