@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_last_app/presentation/screens/bottom_navigation_bar/views/widgets/bottom_navigation_bar_constants.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
-import '../manager/bottom_navigation_bar_cubit.dart';
+import '../../../../business_logic/bot_nav_bar_cubit/bottom_navigation_bar_cubit.dart';
+import '../../../../business_logic/bot_nav_bar_cubit/bottom_navigation_bar_state.dart';
+
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({

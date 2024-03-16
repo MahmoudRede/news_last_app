@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_last_app/presentation/screens/add_view/manager/news_cubit.dart';
+
+import '../../../../business_logic/news_cubit/news_cubit.dart';
 
 class AddNewsBody extends StatelessWidget {
   const AddNewsBody({super.key});
@@ -71,9 +72,13 @@ class AddNewsBody extends StatelessWidget {
                     child: const Text('add')),
                 ElevatedButton(
                     onPressed: () {
-                      cubit.uploadPostImage(
-                          headline: headlineController.text,
-                          details: detailsController.text);
+                      if (cubit.newsImage == null) {
+                        cubit.addNewsPost(headline: headlineController.text, details: detailsController.text);
+                      }else{
+                        cubit.uploadNewsImage(
+                            headline: headlineController.text,
+                            details: detailsController.text);
+                      }
                     },
                     child: const Text('create')),
               ],
