@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:news_last_app/presentation/screens/events_view/events_view.dart';
 import 'package:news_last_app/presentation/screens/favorite_view/favorite_view.dart';
 import 'package:news_last_app/presentation/screens/home_screen/home_screen/home_screen.dart';
