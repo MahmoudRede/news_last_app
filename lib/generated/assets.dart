@@ -26,5 +26,8 @@ class Assets {
   static const String imagesVideo = 'assets/images/video.png';
   static const String translationsAr = 'assets/translations/ar.json';
   static const String translationsEn = 'assets/translations/en.json';
+  static const String donating = 'assets/images/donating.png';
+  static const String thanks = 'assets/images/thanks.png';
+  static const String uploadImage = 'assets/images/gallery.png';
 
 }
