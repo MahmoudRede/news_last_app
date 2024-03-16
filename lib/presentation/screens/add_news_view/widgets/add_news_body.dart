@@ -5,7 +5,7 @@ import '../../../../business_logic/news_cubit/news_cubit.dart';
 
 class AddNewsBody extends StatelessWidget {
   const AddNewsBody({super.key});
-
+  //////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     var detailsController = TextEditingController();
