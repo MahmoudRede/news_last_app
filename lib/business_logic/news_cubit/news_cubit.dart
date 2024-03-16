@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 
 import '../../presentation/screens/home_screen/models/news_item_model.dart';
 
@@ -50,11 +52,18 @@ class NewsCubit extends Cubit<NewsState> {
         print(value.toString());
         addNewsPost(headline: headline, details: details, image: value);
         emit(UploadNewsImageSuccessState());
+        return customToast(
+            title: 'لقد تم رفع الخبر وسوف يتم التأكد منه قبل عرضه',
+            color: Colors.green.shade700);
       }).catchError((error) {
         emit(UploadNewsImageFailureState());
+        return customToast(
+            title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     }).catchError((error) {
       emit(UploadNewsImageFailureState());
+      return customToast(
+          title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
     });
   }
 
@@ -70,8 +79,13 @@ class NewsCubit extends Cubit<NewsState> {
           .add(model.toMap())
           .then((value) {
         emit(AddNewsSuccessState());
+        return customToast(
+            title: 'لقد تم رفع الخبر وسوف يتم التأكد منه قبل عرضه',
+            color: Colors.green.shade700);
       }).catchError((error) {
         emit(AddNewsFailureState());
+        return customToast(
+            title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     } else {
       NewsItemModel model =
@@ -81,8 +95,13 @@ class NewsCubit extends Cubit<NewsState> {
           .add(model.toMap())
           .then((value) {
         emit(AddNewsSuccessState());
+        return customToast(
+            title: 'لقد تم رفع الخبر وسوف يتم التأكد منه قبل عرضه',
+            color: Colors.green.shade700);
       }).catchError((error) {
         emit(AddNewsFailureState());
+        return customToast(
+            title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     }
   }

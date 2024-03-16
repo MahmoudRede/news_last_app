@@ -7,14 +7,14 @@ import 'package:news_last_app/presentation/screens/add_view/widgets/grid_view_it
 
 import 'models/add_grid_view_model.dart';
 
-class AddPostView extends StatefulWidget {
-  const AddPostView({super.key});
+class AddView extends StatefulWidget {
+  const AddView({super.key});
 
   @override
-  State<AddPostView> createState() => _AddPostViewState();
+  State<AddView> createState() => _AddViewState();
 }
 
-class _AddPostViewState extends State<AddPostView> {
+class _AddViewState extends State<AddView> {
   @override
   Widget build(BuildContext context) {
     final List<AddGridViewModel> items = [
