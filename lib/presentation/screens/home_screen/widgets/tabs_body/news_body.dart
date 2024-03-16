@@ -16,7 +16,11 @@ class NewsBody extends StatelessWidget {
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
-              return  NewsItem(newsItemModel: cubit.news[index],);
+              final newsItem = cubit.news[index];
+              bool hasImage = newsItem.image != null && newsItem.image!.isNotEmpty;
+              return hasImage
+                  ? NewsItemWithImage(newsItemModel: newsItem)
+                  : NewsItem(newsItemModel: newsItem);
             },
             separatorBuilder: (context, index) {
               return const SizedBox();

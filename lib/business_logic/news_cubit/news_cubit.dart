@@ -17,86 +17,85 @@ class NewsCubit extends Cubit<NewsState> {
 
   var picker = ImagePicker();
   File? newsImage;
-///////
+
   Future<void> getImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       newsImage = File(pickedFile.path);
-      emit(ImagePickerSuccessState());
+      emit(NewsImagePickerSuccessState());
     } else {
       print('No image selected');
-      emit(ImagePickerFailureState());
+      emit(NewsImagePickerFailureState());
     }
   }
 
   void removeImage() {
     newsImage = null;
-    emit(RemovePostImageState());
+    emit(RemoveNewsImageState());
   }
 
   List<NewsItemModel> news = [];
 
-  void uploadPostImage({
+  void uploadNewsImage({
     required String headline,
     required String details,
   }) {
-    emit(UploadImageLoadingState());
+    emit(UploadNewsImageLoadingState());
     firebase_storage.FirebaseStorage.instance
         .ref()
         .child('news/${Uri.file(newsImage!.path).pathSegments.last}')
         .putFile(newsImage!)
         .then((value) {
-      value.ref.getDownloadURL()
-          .then((value)
-      {
+      value.ref.getDownloadURL().then((value) {
         print(value.toString());
         addNewsPost(headline: headline, details: details, image: value);
-        emit(UploadImageSuccessState());
-      })
-          .catchError((error)
-      {
-        emit(UploadImageFailureState());
+        emit(UploadNewsImageSuccessState());
+      }).catchError((error) {
+        emit(UploadNewsImageFailureState());
       });
-    }).catchError((error)
-    {
-      emit(UploadImageFailureState());
+    }).catchError((error) {
+      emit(UploadNewsImageFailureState());
     });
   }
-
 
   void addNewsPost({
     required String headline,
     required String details,
-    required String image,
+    String? image,
   }) {
-    NewsItemModel model =
-        NewsItemModel(image: image, headline: headline, details: details);
-    FirebaseFirestore.instance
-        .collection('news')
-        .add(model.toMap())
-        .then((value) {
-      emit(AddNewsSuccessState());
-    }).catchError((error) {
-      emit(AddNewsFailureState());
-    });
+    if (newsImage == null) {
+      NewsItemModel model = NewsItemModel(headline: headline, details: details);
+      FirebaseFirestore.instance
+          .collection('news')
+          .add(model.toMap())
+          .then((value) {
+        emit(AddNewsSuccessState());
+      }).catchError((error) {
+        emit(AddNewsFailureState());
+      });
+    } else {
+      NewsItemModel model =
+          NewsItemModel(image: image, headline: headline, details: details);
+      FirebaseFirestore.instance
+          .collection('news')
+          .add(model.toMap())
+          .then((value) {
+        emit(AddNewsSuccessState());
+      }).catchError((error) {
+        emit(AddNewsFailureState());
+      });
+    }
   }
 
-  void getNews()
-  {
-    FirebaseFirestore.instance
-        .collection('news')
-        .get()
-        .then((value)
-    {
-      value.docs.forEach((doc) {
-        news.add(NewsItemModel.fromJson(doc.data()));
-      });
+  void getNews() {
+    FirebaseFirestore.instance.collection('news').get().then((value) {
+      for (var doc in value.docs) {
+        final newsItem = NewsItemModel.fromJson(doc.data());
+        news.add(newsItem);
+      }
       emit(GetNewsSuccessState());
-    })
-        .catchError((error)
-    {
+    }).catchError((error) {
       emit(GetNewsFailureState(error));
     });
   }
-
 }

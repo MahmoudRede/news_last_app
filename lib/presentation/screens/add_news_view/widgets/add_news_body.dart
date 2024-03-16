@@ -72,9 +72,13 @@ class AddNewsBody extends StatelessWidget {
                     child: const Text('add')),
                 ElevatedButton(
                     onPressed: () {
-                      cubit.uploadPostImage(
-                          headline: headlineController.text,
-                          details: detailsController.text);
+                      if (cubit.newsImage == null) {
+                        cubit.addNewsPost(headline: headlineController.text, details: detailsController.text);
+                      }else{
+                        cubit.uploadNewsImage(
+                            headline: headlineController.text,
+                            details: detailsController.text);
+                      }
                     },
                     child: const Text('create')),
               ],
