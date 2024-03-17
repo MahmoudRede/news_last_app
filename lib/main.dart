@@ -13,7 +13,6 @@ import 'business_logic/bot_nav_bar_cubit/bottom_navigation_bar_cubit.dart';
 import 'business_logic/localization_cubit/app_localization.dart';
 import 'business_logic/localization_cubit/localization_cubit.dart';
 import 'business_logic/localization_cubit/localization_states.dart';
-import 'business_logic/news_cubit/news_cubit.dart';
 import 'constants/constants.dart';
 import 'core/local/cash_helper.dart';
 import 'firebase_options.dart';
