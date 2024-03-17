@@ -88,7 +88,7 @@ class AddNewsBody extends StatelessWidget {
                     ),
                   ElevatedButton(
                       onPressed: () {
-                        cubit.getImage();
+                        cubit.pickImage();
                       },
                       child: const Text('add')),
                   ElevatedButton(
