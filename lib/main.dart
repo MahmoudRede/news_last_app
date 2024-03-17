@@ -47,7 +47,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => LocalizationCubit()..fetchLocalization()),
         BlocProvider(create: (context) => BottomNavigationBarCubit()),
-        BlocProvider(create: (context) => NewsCubit()..getNews()),
       ],
       child: BlocConsumer<LocalizationCubit, LocalizationStates>(
         listener: (context, state) {},
