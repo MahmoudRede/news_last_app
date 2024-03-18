@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../business_logic/news_cubit/news_cubit.dart';
+import '../../../../generated/assets.dart';
+import '../../../../styles/app_size/app_size_config.dart';
+import '../../../../styles/color_manager/color_manager.dart';
+import '../../../widgets/default_button.dart';
 
 class AddNewsBody extends StatelessWidget {
   const AddNewsBody({super.key});
@@ -50,6 +54,9 @@ class AddNewsBody extends StatelessWidget {
                       return null;
                     },
                   ),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   if (cubit.newsImage != null)
                     Card(
                       elevation: 10,
@@ -63,13 +70,12 @@ class AddNewsBody extends StatelessWidget {
                           Image(
                             image: FileImage(cubit.newsImage!),
                             fit: BoxFit.cover,
-                            height: 200.0,
                             width: double.infinity,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CircleAvatar(
-                              backgroundColor: Colors.white.withOpacity(0.3),
+                              backgroundColor: Colors.grey.withOpacity(0.3),
                               radius: 18,
                               child: IconButton(
                                   splashRadius: 30.0,
@@ -86,12 +92,36 @@ class AddNewsBody extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ElevatedButton(
-                      onPressed: () {
-                        cubit.pickImage();
-                      },
-                      child: const Text('add')),
-                  ElevatedButton(
+                  if (cubit.newsImage == null)
+                    GestureDetector(
+                    onTap: () {
+                      cubit.pickImage();
+                    },
+                    child: Container(
+                      width: SizeConfig.width,
+                      height: SizeConfig.height * 0.3,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: ColorManager.primaryColor,
+                          width: 1,
+                          style: BorderStyle.values[1],
+                        ),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: Center(
+                              child: Image.asset(
+                                Assets.uploadImage,
+                                width: SizeConfig.width * 0.8,
+                                height: SizeConfig.height * 0.1,
+                              ),
+                            ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  defaultButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           if (cubit.newsImage == null) {
@@ -105,7 +135,13 @@ class AddNewsBody extends StatelessWidget {
                           }
                         }
                       },
-                      child: const Text('create')),
+                      backGroundColor: ColorManager.primaryColor,
+                      height: 30,
+                      width: 60,
+                      content: const Text(
+                        'نشر',
+                        style: TextStyle(color: Colors.white),
+                      )),
                 ],
               ),
             ),

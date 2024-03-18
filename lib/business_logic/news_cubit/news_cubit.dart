@@ -21,6 +21,7 @@ class NewsCubit extends Cubit<NewsState> {
   File? newsImage;
 
   Future<void> pickImage() async {
+    emit(NewsImagePickerLoadingState());
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       newsImage = File(pickedFile.path);
@@ -107,6 +108,7 @@ class NewsCubit extends Cubit<NewsState> {
   }
 
   void getNews() {
+    emit(GetNewsLoadingState());
     FirebaseFirestore.instance.collection('news').get().then((value) {
       for (var doc in value.docs) {
         final newsItem = NewsItemModel.fromJson(doc.data());
