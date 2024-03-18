@@ -18,7 +18,7 @@ class OnboardingActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultButton(
+    return defaultButton(
       content: isLast? const Text('Get Started',style: TextStyle(
           color: ColorManager.white
       ),): const Text('Next',style: TextStyle(

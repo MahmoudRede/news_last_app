@@ -37,7 +37,7 @@ class _AddViewState extends State<AddView> {
           image: Assets.donating, title: 'اضافة\nتهنئة', () => null),
       AddGridViewModel(
           image: Assets.thanks,
-          title: 'اضافة\شكر',
+          title: 'اضافة\nشكر',
           () => customPushNavigator(context, const AddThanksScreen())),
     ];
     return GridView.count(

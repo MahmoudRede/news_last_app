@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DefaultButton extends StatelessWidget {
+class defaultButton extends StatelessWidget {
   Function()? onPressed;
   Widget content;
   double height;
   double width;
   Color backGroundColor;
 
-  DefaultButton(
+  defaultButton(
       {required this.onPressed,
       required this.backGroundColor,
       required this.height,

@@ -157,7 +157,7 @@ class RegisterScreen extends StatelessWidget {
                             height: SizeConfig.height * .03,
                           ),
                          state is SignUpLoadingState ? const Center(child: CircularProgressIndicator( color: ColorManager.primaryColor,),) :
-                          DefaultButton(
+                          defaultButton(
                             onPressed: () {
                               if (registerFormKey.currentState!
                                   .validate()) {
