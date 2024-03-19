@@ -3,6 +3,7 @@ part of 'news_cubit.dart';
 @immutable
 abstract class NewsState {}
 class NewsInitial extends NewsState {}
+class NewsImagePickerLoadingState extends NewsState {}
 class NewsImagePickerSuccessState extends NewsState {}
 class NewsImagePickerFailureState extends NewsState {}
 class RemoveNewsImageState extends NewsState {}

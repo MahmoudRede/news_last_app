@@ -12,7 +12,6 @@ import 'package:news_last_app/data/models/thanks_model.dart';
 import 'package:news_last_app/data/models/user_model.dart';
 import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
-
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -296,6 +295,8 @@ Future<void> uploadDonation({required String messageBody}) async {
       emit(GetDonationsErrorState());
     });
   }
+
+
 
 
 

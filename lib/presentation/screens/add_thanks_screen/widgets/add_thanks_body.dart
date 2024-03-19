@@ -161,25 +161,134 @@ class AddThanksBody extends StatelessWidget {
                   SizedBox(height: SizeConfig.height * 0.03),
 
                   /// upload button
-                 state is UploadThanksLoadingState? const Center(child: CircularProgressIndicator()):  DefaultButton(
+                  state is UploadThanksLoadingState
+                      ? const Center(child: CircularProgressIndicator())
+                      : defaultButton(
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              cubit.uploadThanksImage();
+                              cubit
+                                  .uploadThanks(
+                                personName: personController.text,
+                                messageTitle: titleController.text,
+                                messageBody: descriptionController.text,
+                                image: cubit.thanksImageUrl,
+                              )
+                                  .then((value) {
+                                personController.clear();
+                                titleController.clear();
+                                descriptionController.clear();
+                                cubit.thanksImage = null;
+                                BottomNavigationBarCubit.get(context)
+                                    .currentIndex = 0;
+                                customToast(
+                                    title: "تمت الاضافة بنجاح",
+                                    color: ColorManager.green);
+                                customPushAndRemoveUntil(
+                                    context, const AppLayout());
+                              });
+                            }
+                          },
+                          backGroundColor: ColorManager.primaryColor,
+                          height: SizeConfig.height * 0.06,
+                          width: SizeConfig.width,
+                          content: Text('إضافة',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                    color: ColorManager.white,
+                                  )),
+                        ),
+
+                  SizedBox(height: SizeConfig.height * 0.03),
+
+                  /// text of person name
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('المرسل اليه',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: SizeConfig.height * 0.025,
+                            color: ColorManager.primaryColor)),
+                  ),
+                  SizedBox(height: SizeConfig.height * 0.01),
+
+                  /// text form field to enter the person name
+                  DefaultTextField(
+                      controller: personController,
+                      hintText: '',
+                      isPassword: false,
+                      enable: true,
+                      validator: (value) {
+                        if (value.trim().isEmpty) {
+                          return 'أدخل اسم الشخص';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.next,
+                      onTap: () {}),
+                  SizedBox(height: SizeConfig.height * 0.03),
+
+                  /// text of message title
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('عنوان الرسالة',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: SizeConfig.height * 0.025,
+                            color: ColorManager.primaryColor)),
+                  ),
+                  SizedBox(height: SizeConfig.height * 0.01),
+
+                  /// text form field to enter the person name
+                  DefaultTextField(
+                      controller: titleController,
+                      hintText: '',
+                      isPassword: false,
+                      enable: true,
+                      validator: (value) {
+                        if (value.trim().isEmpty) {
+                          return 'أدخل عنوان الرسالة';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.next,
+                      onTap: () {}),
+                  SizedBox(height: SizeConfig.height * 0.03),
+
+                  /// text of the description of the message
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('مضمون الشكر',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: SizeConfig.height * 0.025,
+                            color: ColorManager.primaryColor)),
+                  ),
+                  SizedBox(height: SizeConfig.height * 0.01),
+
+                  /// text form field of the description of the message
+                  DefaultTextField(
+                      controller: descriptionController,
+                      hintText: '',
+                      maxLines: 10,
+                      isPassword: false,
+                      enable: true,
+                      validator: (value) {
+                        if (value.trim().isEmpty) {
+                          return 'أدخل الرسالة';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.next,
+                      onTap: () {}),
+                  SizedBox(height: SizeConfig.height * 0.03),
+
+                  /// upload button
+                  defaultButton(
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        cubit.uploadThanksImage();
-                        cubit.uploadThanks(
-                          personName: personController.text,
-                          messageTitle: titleController.text,
-                          messageBody: descriptionController.text,
-                          image: cubit.thanksImageUrl,
-                        ).then((value) {
-                          personController.clear();
-                          titleController.clear();
-                          descriptionController.clear();
-                          cubit.thanksImage = null;
-                          BottomNavigationBarCubit.get(context).currentIndex = 0;
-                          customToast(title: "تمت الاضافة بنجاح", color: ColorManager.green);
-                        customPushAndRemoveUntil(context, const AppLayout());
-                        });
-                      }
+                      if (formKey.currentState!.validate()) {}
                     },
                     backGroundColor: ColorManager.primaryColor,
                     height: SizeConfig.height * 0.06,

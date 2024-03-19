@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
-class DefaultButton extends StatelessWidget {
+class defaultButton extends StatelessWidget {
   Function()? onPressed;
   Widget content;
   double height;
   double width;
   Color backGroundColor;
 
-  DefaultButton(
+  defaultButton(
       {required this.onPressed,
-      required this.backGroundColor,
-      required this.height,
-      required this.width,
-      required this.content,
-      super.key});
+        required this.backGroundColor,
+        required this.height,
+        required this.width,
+        required this.content,
+        super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -108,7 +108,7 @@ class LoginScreen extends StatelessWidget {
 
                             /// login button
                             state is LoginLoadingState ? const CircularProgressIndicator( color: ColorManager.primaryColor,) :
-                             DefaultButton(
+                             defaultButton(
                               onPressed: () {
                                 if (loginFormKey.currentState!.validate()) {
                                   cubit.loginWithFirebaseAuth(

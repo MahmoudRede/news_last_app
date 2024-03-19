@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'package:meta/meta.dart';
+import 'package:news_last_app/presentation/widgets/custom_toast.dart';
+
 import '../../presentation/screens/home_screen/models/news_item_model.dart';
 
 part '../../../../business_logic/news_cubit/news_state.dart';
@@ -18,7 +21,8 @@ class NewsCubit extends Cubit<NewsState> {
   var picker = ImagePicker();
   File? newsImage;
 
-  Future<void> getImage() async {
+  Future<void> pickImage() async {
+    emit(NewsImagePickerLoadingState());
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       newsImage = File(pickedFile.path);
@@ -50,11 +54,18 @@ class NewsCubit extends Cubit<NewsState> {
         debugPrint(value.toString());
         addNewsPost(headline: headline, details: details, image: value);
         emit(UploadNewsImageSuccessState());
+        return customToast(
+            title: 'لقد تم رفع الخبر وسوف يتم التأكد منه قبل عرضه',
+            color: Colors.green.shade700);
       }).catchError((error) {
         emit(UploadNewsImageFailureState());
+        return customToast(
+            title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     }).catchError((error) {
       emit(UploadNewsImageFailureState());
+      return customToast(
+          title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
     });
   }
 
@@ -70,8 +81,13 @@ class NewsCubit extends Cubit<NewsState> {
           .add(model.toMap())
           .then((value) {
         emit(AddNewsSuccessState());
+        return customToast(
+            title: 'لقد تم رفع الخبر وسوف يتم التأكد منه قبل عرضه',
+            color: Colors.green.shade700);
       }).catchError((error) {
         emit(AddNewsFailureState());
+        return customToast(
+            title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     } else {
       NewsItemModel model =
@@ -81,13 +97,19 @@ class NewsCubit extends Cubit<NewsState> {
           .add(model.toMap())
           .then((value) {
         emit(AddNewsSuccessState());
+        return customToast(
+            title: 'لقد تم رفع الخبر وسوف يتم التأكد منه قبل عرضه',
+            color: Colors.green.shade700);
       }).catchError((error) {
         emit(AddNewsFailureState());
+        return customToast(
+            title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     }
   }
 
   void getNews() {
+    emit(GetNewsLoadingState());
     FirebaseFirestore.instance.collection('news').get().then((value) {
       for (var doc in value.docs) {
         final newsItem = NewsItemModel.fromJson(doc.data());

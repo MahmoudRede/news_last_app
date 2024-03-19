@@ -55,7 +55,7 @@ class StartScreen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .07,
             ),
-            DefaultButton(
+            defaultButton(
               onPressed: () {
                 Get.to(() => const LoginScreen(), transition: Transition.fadeIn);
               },

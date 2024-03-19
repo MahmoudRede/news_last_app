@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:news_last_app/core/app_routes/app_routes.dart';
 import 'package:news_last_app/generated/assets.dart';
 import 'package:news_last_app/presentation/screens/add_donation_screen/add_donation_screen.dart';
+import 'package:news_last_app/presentation/screens/add_image_view/add_image_view.dart';
 import 'package:news_last_app/presentation/screens/add_news_view/add_news_view.dart';
 import 'package:news_last_app/presentation/screens/add_thanks_screen/add_thanks_screen.dart';
 import 'package:news_last_app/presentation/screens/add_view/widgets/grid_view_item.dart';
 
 import 'models/add_grid_view_model.dart';
 
-class AddPostView extends StatefulWidget {
-  const AddPostView({super.key});
+class AddView extends StatefulWidget {
+  const AddView({super.key});
 
   @override
-  State<AddPostView> createState() => _AddPostViewState();
+  State<AddView> createState() => _AddViewState();
 }
 
-class _AddPostViewState extends State<AddPostView> {
+class _AddViewState extends State<AddView> {
   @override
   Widget build(BuildContext context) {
     final List<AddGridViewModel> items = [
@@ -26,7 +27,9 @@ class _AddPostViewState extends State<AddPostView> {
       AddGridViewModel(
           image: Assets.imagesEvents, title: 'اضافة\nمناسبة', () => null),
       AddGridViewModel(
-          image: Assets.imagesPicture, title: 'اضافة\nصورة', () => null),
+          image: Assets.imagesPicture,
+          title: 'اضافة\nصورة',
+          () => customPushNavigator(context, const AddImageView())),
       AddGridViewModel(
           image: Assets.imagesVideo, title: 'اضافة\nفيديو', () => null),
       AddGridViewModel(
@@ -34,7 +37,9 @@ class _AddPostViewState extends State<AddPostView> {
       AddGridViewModel(
           image: Assets.donating, title: 'اضافة\nتهنئة', () => customPushNavigator(context, const AddDonationScreen())),
       AddGridViewModel(
-          image: Assets.thanks, title: 'اضافة\شكر', () => customPushNavigator(context, const AddThanksScreen())),
+          image: Assets.thanks,
+          title: 'اضافة\nشكر',
+          () => customPushNavigator(context, const AddThanksScreen())),
     ];
     return GridView.count(
       shrinkWrap: true,

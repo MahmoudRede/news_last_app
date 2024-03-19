@@ -58,7 +58,7 @@ class AddDonationBody extends StatelessWidget {
               SizedBox(height: SizeConfig.height * 0.03),
 
               /// upload button
-              DefaultButton(
+              defaultButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
 
