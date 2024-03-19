@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
 import 'widgets/on_boarding_view_body.dart';

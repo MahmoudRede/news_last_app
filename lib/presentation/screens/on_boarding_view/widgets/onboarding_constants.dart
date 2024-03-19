@@ -1,7 +1,6 @@
 import 'package:news_last_app/core/app_routes/app_routes.dart';
 import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/data/models/on_boarding_model.dart';
-import 'package:news_last_app/generated/assets.dart';
 import 'package:news_last_app/presentation/screens/start_screen/start_screen.dart';
 
 bool onBoarding = CashHelper.getData(key: 'onBoarding') ?? false;

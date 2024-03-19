@@ -6,7 +6,6 @@ import 'package:lottie/lottie.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
 import 'package:news_last_app/presentation/screens/Login_screen/login_screen.dart';
 import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
-import 'package:news_last_app/presentation/screens/home_screen/home_screen/home_screen.dart';
 import 'package:news_last_app/presentation/widgets/default_button.dart';
 import 'package:news_last_app/presentation/widgets/default_text_field.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:news_last_app/business_logic/localization_cubit/localization_cubit.dart';
-import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/presentation/screens/Login_screen/login_screen.dart';
 import 'package:news_last_app/presentation/widgets/default_button.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';

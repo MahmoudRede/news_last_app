@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:news_last_app/presentation/widgets/default_button.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'onboarding_constants.dart';
 
