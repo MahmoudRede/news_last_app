@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
+// ignore: must_be_immutable
 class DefaultTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;

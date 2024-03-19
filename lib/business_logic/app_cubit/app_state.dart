@@ -41,9 +41,31 @@ class ChangeEventsTabsState extends AppState{}
 class GetThanksImagePickerLoadingState extends AppState{}
 class GetThanksImagePickerSuccessState extends AppState{}
 class GetThanksImagePickerErrorState extends AppState{}
+
 /// upload thanks image
 class UploadThanksImageLoadingState extends AppState{}
 class UploadThanksImageSuccessState extends AppState{}
 class UploadThanksImageErrorState extends AppState{}
+
+/// upload Thanks
+class UploadThanksLoadingState extends AppState{}
+class UploadThanksSuccessState extends AppState{}
+class UploadThanksErrorState extends AppState{}
+
+/// Get Thanks
+class GetThanksLoadingState extends AppState{}
+class GetThanksSuccessState extends AppState{}
+class GetThanksErrorState extends AppState{}
+
+/// upload donation
+class UploadDonationLoadingState extends AppState{}
+class UploadDonationSuccessState extends AppState{}
+class UploadDonationErrorState extends AppState{}
+
+/// get donations
+
+class GetDonationsLoadingState extends AppState{}
+class GetDonationsSuccessState extends AppState{}
+class GetDonationsErrorState extends AppState{}
 
 

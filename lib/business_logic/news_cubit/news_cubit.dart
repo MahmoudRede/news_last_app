@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'package:meta/meta.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 
 import '../../presentation/screens/home_screen/models/news_item_model.dart';
@@ -44,13 +45,13 @@ class NewsCubit extends Cubit<NewsState> {
     required String details,
   }) {
     emit(UploadNewsImageLoadingState());
-    firebase_storage.FirebaseStorage.instance
+    FirebaseStorage.instance
         .ref()
         .child('news/${Uri.file(newsImage!.path).pathSegments.last}')
         .putFile(newsImage!)
         .then((value) {
       value.ref.getDownloadURL().then((value) {
-        print(value.toString());
+        debugPrint(value.toString());
         addNewsPost(headline: headline, details: details, image: value);
         emit(UploadNewsImageSuccessState());
         return customToast(

@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
             create: (BuildContext context) =>
-                AppCubit()..getUser(id: uId == null ? uId = '' : uId!)),
+                AppCubit()..getUser(id: uId == null ? uId = '' : uId!)..getThanksPosts()),
         BlocProvider(
             create: (context) => LocalizationCubit()..fetchLocalization()),
         BlocProvider(create: (context) => BottomNavigationBarCubit()),

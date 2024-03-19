@@ -168,12 +168,12 @@ class HomeView extends StatelessWidget {
                 cubit.selectedIndex == 0
                     ? const Expanded(child: NewsBody())
                     : cubit.selectedIndex == 1
-                        ? const Expanded(child: EventsBody())
-                        : cubit.selectedIndex == 2
-                            ? const Expanded(child: PicturesBody())
-                            : cubit.selectedIndex == 3
-                                ? const Expanded(child: VideosBody())
-                                : const Expanded(child: DeadBody())
+                    ? const Expanded(child: EventsBody())
+                    : cubit.selectedIndex == 2
+                    ? const Expanded(child: PicturesBody())
+                    : cubit.selectedIndex == 3
+                    ? const Expanded(child: VideosBody())
+                    : const Expanded(child: DeadBody())
               ],
             ),
           );

@@ -9,11 +9,11 @@ class defaultButton extends StatelessWidget {
 
   defaultButton(
       {required this.onPressed,
-      required this.backGroundColor,
-      required this.height,
-      required this.width,
-      required this.content,
-      super.key});
+        required this.backGroundColor,
+        required this.height,
+        required this.width,
+        required this.content,
+        super.key});
 
   @override
   Widget build(BuildContext context) {

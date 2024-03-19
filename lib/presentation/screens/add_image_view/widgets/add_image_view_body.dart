@@ -90,8 +90,7 @@ class AddImageViewBody extends StatelessWidget {
                   ),
                   defaultButton(
                       onPressed: () {
-                        cubit.uploadImage();
-                      },
+                        cubit.uploadImage();},
                       backGroundColor: ColorManager.primaryColor,
                       height: 30,
                       width: 60,
