@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
 import 'package:news_last_app/business_logic/image_cubit/image_cubit.dart';
+import 'package:news_last_app/generated/assets.dart';
 import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/dead_body.dart';
+import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/donation_body.dart';
 import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/events_body.dart';
 import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/pictures_body.dart';
+import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/thanks_body.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import '../../../../business_logic/news_cubit/news_cubit.dart';
 import '../../../../styles/color_manager/color_manager.dart';
@@ -32,7 +35,7 @@ class HomeView extends StatelessWidget {
                 SizedBox(
                   height: SizeConfig.height * 0.12,
                   child: DefaultTabController(
-                    length: 5,
+                    length: 7,
                     initialIndex: cubit.selectedIndex,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
@@ -160,6 +163,50 @@ class HomeView extends StatelessWidget {
                               ],
                             ),
                           ),
+                          Tab(
+                            height: SizeConfig.height * 0.12,
+                            child: Column(
+                              children: [
+                                Image(
+                                  image: const AssetImage(
+                                      Assets.thanks),
+                                  width: SizeConfig.height * 0.04,
+                                  height: SizeConfig.height * 0.04,
+                                ),
+                                SizedBox(
+                                  height: SizeConfig.height * 0.01,
+                                ),
+                                Text(
+                                  "شكر",
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.headline6Size,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Tab(
+                            height: SizeConfig.height * 0.12,
+                            child: Column(
+                              children: [
+                                Image(
+                                  image: const AssetImage(
+                                      Assets.donating),
+                                  width: SizeConfig.height * 0.04,
+                                  height: SizeConfig.height * 0.04,
+                                ),
+                                SizedBox(
+                                  height: SizeConfig.height * 0.01,
+                                ),
+                                Text(
+                                  "تهنئة",
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.headline6Size,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -173,7 +220,11 @@ class HomeView extends StatelessWidget {
                     ? const Expanded(child: PicturesBody())
                     : cubit.selectedIndex == 3
                     ? const Expanded(child: VideosBody())
-                    : const Expanded(child: DeadBody())
+                    : cubit.selectedIndex == 4
+                    ?const Expanded(child: DeadBody())
+                    :cubit.selectedIndex == 5
+                ? const Expanded(child: ThanksBody())
+                    : const Expanded(child: DonationBody()),
               ],
             ),
           );

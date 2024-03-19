@@ -11,8 +11,10 @@ class Assets {
   static const String fontsTajawalMedium = 'assets/fonts/Tajawal-Medium.ttf';
   static const String fontsTajawalRegular = 'assets/fonts/Tajawal-Regular.ttf';
   static const String imagesDead = 'assets/images/dead.png';
+  static const String imagesDonating = 'assets/images/donating.png';
   static const String imagesEvents = 'assets/images/events.png';
   static const String imagesFacebook = 'assets/images/facebook.png';
+  static const String imagesGallery = 'assets/images/gallery.png';
   static const String imagesLogin = 'assets/images/login.json';
   static const String imagesNews = 'assets/images/news.jpg';
   static const String imagesOnBoarding1 = 'assets/images/onBoarding1.json';
@@ -23,6 +25,7 @@ class Assets {
   static const String imagesOnboardingShare = 'assets/images/onboarding_share.jpg';
   static const String imagesPicture = 'assets/images/picture.png';
   static const String imagesProfile = 'assets/images/profile.jpg';
+  static const String imagesThanks = 'assets/images/thanks.png';
   static const String imagesVideo = 'assets/images/video.png';
   static const String translationsAr = 'assets/translations/ar.json';
   static const String translationsEn = 'assets/translations/en.json';
