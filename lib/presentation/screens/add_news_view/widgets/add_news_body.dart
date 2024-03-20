@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_last_app/presentation/widgets/default_text_field.dart';
 
 import '../../../../business_logic/news_cubit/news_cubit.dart';
 import '../../../../generated/assets.dart';
@@ -31,32 +32,62 @@ class AddNewsBody extends StatelessWidget {
               key: formKey,
               child: Column(
                 children: [
-                  TextFormField(
-                    controller: headlineController,
-                    decoration: const InputDecoration(hintText: 'عنوان الخبر'),
-                    validator: (validator) {
-                      if (validator!.trim() == '') {
-                        return '!!';
-                      }
-                      return null;
-                    },
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Text('عنوان الخبر',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: SizeConfig.height * 0.025,
+                            color: ColorManager.primaryColor)),
                   ),
-                  TextFormField(
-                    maxLines: null,
-                    keyboardType: TextInputType.multiline,
+                  SizedBox(height: SizeConfig.height * 0.01),
+                  DefaultTextField(
+                      controller: headlineController,
+                      hintText: '',
+                      validator: (validator) {
+                        if (validator!.trim() == '') {
+                          return '!!';
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.next,
+                      onTap: () {}),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('تفاصيل الخبر',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: SizeConfig.height * 0.025,
+                            color: ColorManager.primaryColor)),
+                  ),
+                  SizedBox(height: SizeConfig.height * 0.01),
+                  DefaultTextField(
                     controller: detailsController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none, hintText: 'تفاصيل الخبر...'),
+                    hintText: '',
                     validator: (validator) {
                       if (validator!.trim() == "") {
                         return '!!';
                       }
                       return null;
                     },
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    onTap: () {},
+                    maxLines: 10,
                   ),
                   const SizedBox(
                     height: 30,
                   ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('اضافة  صورة',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: SizeConfig.height * 0.025,
+                            color: ColorManager.primaryColor)),
+                  ),
+                  SizedBox(height: SizeConfig.height * 0.01),
                   if (cubit.newsImage != null)
                     Card(
                       elevation: 10,
@@ -94,30 +125,30 @@ class AddNewsBody extends StatelessWidget {
                     ),
                   if (cubit.newsImage == null)
                     GestureDetector(
-                    onTap: () {
-                      cubit.pickImage();
-                    },
-                    child: Container(
-                      width: SizeConfig.width,
-                      height: SizeConfig.height * 0.3,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: ColorManager.primaryColor,
-                          width: 1,
-                          style: BorderStyle.values[1],
+                      onTap: () {
+                        cubit.pickImage();
+                      },
+                      child: Container(
+                        width: SizeConfig.width,
+                        height: SizeConfig.height * 0.3,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: ColorManager.primaryColor,
+                            width: 1,
+                            style: BorderStyle.values[1],
+                          ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
                         ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
+                        child: Center(
+                          child: Image.asset(
+                            Assets.uploadImage,
+                            width: SizeConfig.width * 0.8,
+                            height: SizeConfig.height * 0.1,
+                          ),
+                        ),
                       ),
-                      child: Center(
-                              child: Image.asset(
-                                Assets.uploadImage,
-                                width: SizeConfig.width * 0.8,
-                                height: SizeConfig.height * 0.1,
-                              ),
-                            ),
                     ),
-                  ),
                   const SizedBox(
                     height: 16,
                   ),
@@ -137,7 +168,7 @@ class AddNewsBody extends StatelessWidget {
                       },
                       backGroundColor: ColorManager.primaryColor,
                       height: 30,
-                      width: 60,
+                      width: double.infinity,
                       content: const Text(
                         'نشر',
                         style: TextStyle(color: Colors.white),

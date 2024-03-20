@@ -26,7 +26,7 @@ class SettingsListView extends StatelessWidget {
           return const Divider(
             indent: 30,
             endIndent: 30,
-            height: 30,
+            height: 20,
             thickness: 0.8,
           );
         },
