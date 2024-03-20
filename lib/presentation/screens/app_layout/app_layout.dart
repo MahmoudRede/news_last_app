@@ -18,6 +18,7 @@ class AppLayout extends StatelessWidget {
         BottomNavigationBarCubit cubit = BottomNavigationBarCubit.get(context);
         return Scaffold(
           appBar: AppBar(
+           // backgroundColor: ColorManager.primaryColor,
             centerTitle: true,
             title: Text(cubit.titles[cubit.currentIndex],
                 style: Theme.of(context)

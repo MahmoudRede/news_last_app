@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
               }
               return supportLang.first;
             },
-              home: const DeathDetailsScreen(),
+              home: const AppLayout(),
           );
         },
       ),
