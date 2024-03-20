@@ -53,7 +53,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 5), () {
       if(onBoarding){
         customPushNavigator(context, const StartScreen());
       }else{
