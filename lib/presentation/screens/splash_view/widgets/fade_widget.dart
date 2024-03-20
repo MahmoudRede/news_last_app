@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:news_last_app/generated/assets.dart';
 
 class FadeWidget extends StatelessWidget {
@@ -16,7 +17,11 @@ class FadeWidget extends StatelessWidget {
         builder: (context,_) {
           return FadeTransition(
             opacity: fadeAnimation,
-            child: Image.asset(Assets.imagesFacebook),
+            child: Container(
+                height: MediaQuery.of(context).size.height * .4,
+                width: double.infinity,
+                child: Lottie.asset('assets/images/social.json')
+            ),
           );
         }
     );
