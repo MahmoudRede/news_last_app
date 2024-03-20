@@ -37,6 +37,18 @@ class GetUserErrorState extends AppState{}
 class ChangeHomeTabsState extends AppState{}
 class ChangeEventsTabsState extends AppState{}
 
+class InitialVideoLoadingState extends AppState{}
+class InitialVideoSuccessState extends AppState{}
+class InitialVideoErrorState extends AppState{}
+
+class UploadDawinaLoadingState extends AppState{}
+class UploadDawinaSuccessState extends AppState{}
+class UploadDawinaErrorState extends AppState{}
+
+class GetDawinaLoadingState extends AppState{}
+class GetDawinaSuccessState extends AppState{}
+class GetDawinaErrorState extends AppState{}
+
 /// Get Thanks Image Picker
 class GetThanksImagePickerLoadingState extends AppState{}
 class GetThanksImagePickerSuccessState extends AppState{}

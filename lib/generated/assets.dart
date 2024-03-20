@@ -32,6 +32,7 @@ class Assets {
   static const String donating = 'assets/images/donating.png';
   static const String celebrate = 'assets/images/celebrate.jpg';
   static const String thanks = 'assets/images/thanks.png';
+  static const String dawina = 'assets/images/dinner.png';
   static const String uploadImage = 'assets/images/gallery.png';
 
 }

@@ -13,13 +13,14 @@ class SettingsListViewItem extends StatelessWidget {
     return ListTile(
       leading:  Icon(
         settingsItemModel.icon,
-        size: 35,
+        size: 25,
         color: ColorManager.primaryColor,
       ),
       title: Text(
         settingsItemModel.title,
         style: TextStyle(
-            fontSize: SizeConfig.headline3Size,
+            fontWeight: FontWeight.w500,
+            fontSize: SizeConfig.height * 0.022,
             color: ColorManager.primaryColor),
       ),
     );
