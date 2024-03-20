@@ -1,21 +1,23 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:news_last_app/constants/firebase_errors.dart';
 import 'package:news_last_app/core/local/cash_helper.dart';
+import 'package:news_last_app/data/models/donation_model.dart';
+import 'package:news_last_app/data/models/thanks_model.dart';
 import 'package:news_last_app/data/models/user_model.dart';
 import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppInitial());
-  static AppCubit get(context) => BlocProvider.of<AppCubit>(context);
 
+  static AppCubit get(context) => BlocProvider.of<AppCubit>(context);
 
   ////sign up////
   void createAccountWithFirebaseAuth(
@@ -164,6 +166,10 @@ class AppCubit extends Cubit<AppState> {
 
   void changeHomeTabs(int index) {
     selectedIndex = index;
+    if (selectedIndex == 5) {
+      getThanksPosts();
+      getDonationPosts();
+    }
     emit(ChangeHomeTabsState());
   }
 
@@ -174,28 +180,124 @@ class AppCubit extends Cubit<AppState> {
     emit(ChangeEventsTabsState());
   }
 
+  /// get thanks image
   var picker = ImagePicker();
-  String thanksImagePath = '';
   File? thanksImage;
+  String thanksImageUrl = '';
 
   Future<void> getThanksImage() async {
-    emit(GetThanksImagePickerLoadingState());
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       thanksImage = File(pickedFile.path);
-      await firebase_storage.FirebaseStorage.instance
-          .ref()
-          .child('thanksImage/${Uri.file(thanksImage!.path).pathSegments.last}')
-          .putFile(thanksImage!)
-          .then((value) {
-        value.ref.getDownloadURL().then((value) {
-          thanksImagePath = value;
-          emit(GetThanksImagePickerSuccessState());
-        });
-      });
+      emit(GetThanksImagePickerSuccessState());
     } else {
       debugPrint('No image selected');
       emit(GetThanksImagePickerErrorState());
     }
   }
+
+  /// upload thanks image
+  Future<void> uploadThanksImage() async {
+    emit(UploadThanksImageLoadingState());
+    FirebaseStorage.instance
+        .ref()
+        .child('Thanks/${Uri.file(thanksImage!.path).pathSegments.last}')
+        .putFile(thanksImage!)
+        .then((p0) {
+      p0.ref.getDownloadURL().then((value) {
+        thanksImageUrl = value;
+        emit(UploadThanksImageSuccessState());
+      }).catchError((error) {
+        emit(UploadThanksImageErrorState());
+      });
+    });
+  }
+
+  /// upload thanks posts
+
+  Future<void> uploadThanks({
+    required String personName,
+    required String messageTitle,
+    required String messageBody,
+    String? image,
+  }) async {
+    emit(UploadThanksLoadingState());
+    final thanksModel = ThanksModel(
+      personName: personName,
+      title: messageTitle,
+      message: messageBody,
+      imagePath: image,
+      uId: userModel!.uId!,
+    );
+    FirebaseFirestore.instance
+        .collection('Thanks')
+        .add(thanksModel.toJson())
+        .then((value) {
+      emit(UploadThanksSuccessState());
+    }).catchError((error) {
+      emit(UploadThanksErrorState());
+    });
+  }
+
+  /// get thanks posts
+  List<ThanksModel> thanksList = [];
+
+  Future<void> getThanksPosts() async {
+    thanksList = [];
+    emit(GetThanksLoadingState());
+    await FirebaseFirestore.instance.collection('Thanks').get().then((value) {
+      debugPrint("value.docs.length is *********** ${value.docs.last.data()}");
+      value.docs.forEach((element) {
+        var thanksModel = ThanksModel.fromJson(element.data());
+        thanksList.add(thanksModel);
+      });
+      debugPrint("thanksList is *********** ${thanksList[0].personName}");
+      emit(GetThanksSuccessState());
+    }).catchError((onError) {
+      debugPrint(onError.toString());
+      emit(GetThanksErrorState());
+    });
+  }
+
+
+/// upload donation
+
+Future<void> uploadDonation({required String messageBody}) async {
+  emit(UploadDonationLoadingState());
+  final donationModel = DonationModel(
+    content: messageBody,
+    id: userModel!.uId!,
+  );
+  FirebaseFirestore.instance
+      .collection('Donations')
+      .add(donationModel.toJson())
+      .then((value) {
+    emit(UploadDonationSuccessState());
+  }).catchError((error) {
+    emit(UploadDonationErrorState());
+  });
+  }
+
+  List<DonationModel> donationList = [];
+  Future<void> getDonationPosts() async {
+    donationList = [];
+    emit(GetDonationsLoadingState());
+    await FirebaseFirestore.instance.collection('Donations').get().then((value) {
+      debugPrint("value.docs.length is *********** ${value.docs.last.data()}");
+      value.docs.forEach((element) {
+        var donationModel = DonationModel.fromJson(element.data());
+        donationList.add(donationModel);
+      });
+      debugPrint("donationList is *********** ${donationList[0].content}");
+      emit(GetDonationsSuccessState());
+    }).catchError((onError) {
+      debugPrint(onError.toString());
+      emit(GetDonationsErrorState());
+    });
+  }
+
+
+
+
+
 }
