@@ -12,6 +12,7 @@ class UploadImageSuccessState extends ImageState {}
 class UploadImageFailureState extends ImageState {}
 class AddImageSuccessState extends ImageState {}
 class AddImageFailureState extends ImageState {}
+class GetImageLoadingState extends ImageState {}
 class GetImageSuccessState extends ImageState {}
 class GetImageFailureState extends ImageState {
   final String error;
