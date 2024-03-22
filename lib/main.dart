@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:news_last_app/presentation/screens/addEventScreen/Screen/add_event_screen.dart';
 import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
 import 'package:news_last_app/presentation/screens/on_boarding_view/widgets/onboarding_constants.dart';
 import 'package:news_last_app/presentation/screens/splash_view/splash_view.dart';
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
               }
               return supportLang.first;
             },
-              home: const SplashView(),
+              home: const AddEventScreen(),
           );
         },
       ),
