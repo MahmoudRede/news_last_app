@@ -19,8 +19,8 @@ class ProfileCard extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         side: BorderSide(color: Colors.white70, width: 1),
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(52),
-          bottomRight: Radius.circular(52),
+          topRight: Radius.circular(42),
+          bottomRight: Radius.circular(42),
           topLeft: Radius.circular(16),
           bottomLeft: Radius.circular(16),
         ),
@@ -28,7 +28,7 @@ class ProfileCard extends StatelessWidget {
       child: Row(
         children: [
           const CircleAvatar(
-            radius: 53,
+            radius: 43,
             backgroundColor: ColorManager.primaryColor,
             child: CircleAvatar(
                 radius: 50,
@@ -42,8 +42,10 @@ class ProfileCard extends StatelessWidget {
           Text(
             'زائر',
             style: TextStyle(
+                fontWeight: FontWeight.bold,
                 fontSize: SizeConfig.headline2Size,
-                color: ColorManager.primaryColor),
+                color: ColorManager.primaryColor
+            ),
           )
         ],
       ),

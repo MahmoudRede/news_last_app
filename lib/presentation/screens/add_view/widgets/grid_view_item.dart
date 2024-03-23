@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
 import '../models/add_grid_view_model.dart';
 
@@ -32,8 +34,9 @@ class GridViewItem extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: Image.asset(
+                        height: MediaQuery.sizeOf(context).height * 0.15,
+                        width: MediaQuery.sizeOf(context).width * 0.15,
                         addPostModel.image,
-                        fit: BoxFit.cover,
                       ),
                     ),
                     const SizedBox(
@@ -41,7 +44,11 @@ class GridViewItem extends StatelessWidget {
                     ),
                     Text(
                       addPostModel.title,
-                      style: textStyle,
+                      style:  TextStyle(
+                        color: ColorManager.textColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: MediaQuery.sizeOf(context).height * 0.022,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ]),

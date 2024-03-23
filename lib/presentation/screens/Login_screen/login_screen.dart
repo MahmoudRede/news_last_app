@@ -73,15 +73,15 @@ class LoginScreen extends StatelessWidget {
                             /// email
                             DefaultTextField(
                                 controller: emailController,
-                                hintText: "البريد الالكتروني",
+                                hintText: "رقم الهاتف",
                                 isPassword: false,
                                 validator: (validator) {
                                   if (validator!.trim()=="") {
-                                    return "أدخل البريد الالكتروني";
+                                    return "أدخل رقم الهاتف";
                                   }
                                   return null;
                                 },
-                                keyboardType: TextInputType.emailAddress,
+                                keyboardType: TextInputType.phone,
                                 textInputAction: TextInputAction.next,
                                 onTap: () {}),
                             SizedBox(

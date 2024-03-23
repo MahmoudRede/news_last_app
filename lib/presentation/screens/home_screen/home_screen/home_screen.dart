@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
 import 'package:news_last_app/business_logic/image_cubit/image_cubit.dart';
 import 'package:news_last_app/generated/assets.dart';
+import 'package:news_last_app/presentation/screens/dawina_screen/dawina_screen.dart';
 import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/dead_body.dart';
 import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/donation_body.dart';
 import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/events_body.dart';
@@ -35,7 +36,7 @@ class HomeView extends StatelessWidget {
                 SizedBox(
                   height: SizeConfig.height * 0.12,
                   child: DefaultTabController(
-                    length: 7,
+                    length: 8,
                     initialIndex: cubit.selectedIndex,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
@@ -207,6 +208,29 @@ class HomeView extends StatelessWidget {
                               ],
                             ),
                           ),
+                          Tab(
+                            height: SizeConfig.height * 0.12,
+                            child: Column(
+                              children: [
+                                Image(
+                                  image:
+                                  const AssetImage("assets/images/dinner.png"),
+                                  width: SizeConfig.height * 0.04,
+                                  height: SizeConfig.height * 0.04,
+                                ),
+                                SizedBox(
+                                  height: SizeConfig.height * 0.01,
+                                ),
+                                Text(
+                                  "الدوانيات",
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.headline6Size,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
                         ],
                       ),
                     ),
@@ -222,9 +246,9 @@ class HomeView extends StatelessWidget {
                     ? const Expanded(child: VideosBody())
                     : cubit.selectedIndex == 4
                     ?const Expanded(child: DeadBody())
-                    :cubit.selectedIndex == 5
-                ? const Expanded(child: ThanksBody())
-                    : const Expanded(child: DonationBody()),
+                    :cubit.selectedIndex == 5 ?
+                const Expanded(child: ThanksBody()):cubit.selectedIndex == 6?
+                     const Expanded(child: DonationBody()):DawinaScreen(),
               ],
             ),
           );

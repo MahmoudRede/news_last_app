@@ -7,11 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:news_last_app/constants/firebase_errors.dart';
 import 'package:news_last_app/core/local/cash_helper.dart';
+import 'package:news_last_app/data/models/dawina_model.dart';
 import 'package:news_last_app/data/models/donation_model.dart';
 import 'package:news_last_app/data/models/thanks_model.dart';
 import 'package:news_last_app/data/models/user_model.dart';
 import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
+import 'package:video_player/video_player.dart';
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -30,7 +32,7 @@ class AppCubit extends Cubit<AppState> {
       emit(SignUpLoadingState());
       final credential =
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailAddress,
+        email: '${phoneNumber}@gmail.com',
         password: password,
       );
 
@@ -70,7 +72,7 @@ class AppCubit extends Cubit<AppState> {
     try {
       emit(LoginLoadingState());
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailAddress,
+        email: '${emailAddress}@gmail.com',
         password: password,
       );
       await getUser(id: (credential.user?.uid)!);
@@ -296,6 +298,113 @@ Future<void> uploadDonation({required String messageBody}) async {
     });
   }
 
+  ///Video
+
+  List <String> videoPaths=[
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+  ];
+
+  List<VideoPlayerController> videoControllers = List.generate(10, (index) => VideoPlayerController.networkUrl(Uri.parse('https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')));
+  late VideoPlayerController videoController ;
+
+  Future<void> initialVideo(context) async {
+
+    emit(InitialVideoLoadingState());
+    AppCubit.get(context).videoPaths.forEach((element) {
+
+      videoController = VideoPlayerController.networkUrl(Uri.parse(
+          element
+      ))..initialize().then((value) {
+
+        debugPrint('video loaded');
+        emit(InitialVideoSuccessState());
+      }).catchError((error){
+
+        debugPrint('Error in video ${error.toString()}');
+        emit(InitialVideoErrorState());
+      });
+
+    });
+  }
+
+  void videoIsPlay() {
+    videoController.value.isPlaying
+        ? videoController.pause()
+        : videoController.play();
+    emit(InitialVideoSuccessState());
+  }
+
+  Future<void> addDawina({
+    required String itemName,
+    required String address,
+    required String days,
+    required String phone,
+    required String location,
+
+  })async{
+
+    emit(UploadDawinaLoadingState());
+    DawinaModel dawinaModel=DawinaModel(
+        itemName: itemName,
+        address: address,
+        days: days,
+        uId: '',
+        phone: phone,
+        location: location
+    );
+
+    FirebaseFirestore.instance
+        .collection('dawina')
+        .add(dawinaModel.toJson())
+        .then((value) {
+
+      FirebaseFirestore.instance
+          .collection('dawina')
+          .doc(value.id)
+          .update({
+        'uId':value.id
+      });
+
+      customToast(title: 'تم اضافه الدوانيه بنجاح', color: ColorManager.primaryColor);
+      debugPrint('Upload Dawina Success');
+      emit(UploadDawinaSuccessState());
+    }).catchError((error) {
+
+      debugPrint('Error in Add Dawina is ${error.toString()}');
+      emit(UploadDawinaErrorState());
+    });
+
+  }
+
+  List<DawinaModel> dawinaList=[];
+  Future<void> getDawina()async{
+
+    dawinaList=[];
+    emit(GetDawinaLoadingState());
+
+    FirebaseFirestore.instance
+        .collection('dawina')
+        .get()
+        .then((value) {
+
+      for (var element in value.docs) {
+        dawinaList.add(DawinaModel.fromJson(element.data()));
+      }
+
+
+      debugPrint('Get Dawina Success');
+      emit(GetDawinaSuccessState());
+    }).catchError((error) {
+
+      debugPrint('Error in Add Dawina is ${error.toString()}');
+      emit(GetDawinaErrorState());
+    });
+
+  }
 
 
 

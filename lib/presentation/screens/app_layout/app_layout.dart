@@ -18,24 +18,14 @@ class AppLayout extends StatelessWidget {
         BottomNavigationBarCubit cubit = BottomNavigationBarCubit.get(context);
         return Scaffold(
           appBar: AppBar(
+           // backgroundColor: ColorManager.primaryColor,
             centerTitle: true,
             title: Text(cubit.titles[cubit.currentIndex],
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
-                    .copyWith(color: ColorManager.white)),
-            leading: const Icon(Icons.notifications),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () {
-                    customPushNavigator(context, const SettingsView());
-                  },
-                ),
-              )
-            ],
+                    .copyWith(color: ColorManager.white)
+            ),
           ),
           body: cubit.views[cubit.currentIndex],
           bottomNavigationBar: const CustomBottomNavBar(),

@@ -5,7 +5,9 @@ import 'package:news_last_app/presentation/screens/add_donation_screen/add_donat
 import 'package:news_last_app/presentation/screens/add_image_view/add_image_view.dart';
 import 'package:news_last_app/presentation/screens/add_news_view/add_news_view.dart';
 import 'package:news_last_app/presentation/screens/add_thanks_screen/add_thanks_screen.dart';
+import 'package:news_last_app/presentation/screens/add_video/video_screen.dart';
 import 'package:news_last_app/presentation/screens/add_view/widgets/grid_view_item.dart';
+import 'package:news_last_app/presentation/screens/dawina_screen/add_dawina.dart';
 
 import 'models/add_grid_view_model.dart';
 
@@ -22,33 +24,42 @@ class _AddViewState extends State<AddView> {
     final List<AddGridViewModel> items = [
       AddGridViewModel(
           image: Assets.assetsImagesNews,
-          title: 'اضافة\nخبر',
+          title: 'اضافة خبر',
           () => customPushNavigator(context, const AddNewsView())),
       AddGridViewModel(
-          image: Assets.imagesEvents, title: 'اضافة\nمناسبة', () => null),
+          image: Assets.imagesEvents, title: 'اضافة مناسبة', () => null),
       AddGridViewModel(
           image: Assets.imagesPicture,
-          title: 'اضافة\nصورة',
+          title: 'اضافة صورة',
           () => customPushNavigator(context, const AddImageView())),
       AddGridViewModel(
-          image: Assets.imagesVideo, title: 'اضافة\nفيديو', () => null),
+          image: Assets.imagesVideo, title: 'اضافة فيديو', () => customPushNavigator(context, const AddVideoView())),
       AddGridViewModel(
-          image: Assets.imagesDead, title: 'اضافة\nحالة وفاة', () => null),
+          image: Assets.imagesDead, title: 'اضافة حالة وفاة', () => null),
       AddGridViewModel(
-          image: Assets.donating, title: 'اضافة\nتهنئة', () => customPushNavigator(context, const AddDonationScreen())),
+          image: Assets.donating, title: 'اضافة تهنئة', () => customPushNavigator(context, const AddDonationScreen())),
       AddGridViewModel(
           image: Assets.thanks,
-          title: 'اضافة\nشكر',
+          title: 'اضافة شكر',
           () => customPushNavigator(context, const AddThanksScreen())),
+      AddGridViewModel(
+          image: Assets.dawina,
+          title: 'اضافة دواينه',
+              () => customPushNavigator(context,  AddDawina())),
     ];
     return GridView.count(
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       crossAxisCount: 2,
-      mainAxisSpacing: 10.0,
-      crossAxisSpacing: 2.0,
+      mainAxisSpacing: 5.0,
+      crossAxisSpacing: 5.0,
       children: List.generate(items.length, (index) {
-        return Center(
+        return Container(
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(15),
+          ),
           child: GridViewItem(addPostModel: items[index]),
         );
       }),

@@ -24,6 +24,14 @@ class AddImageViewBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('اضافة صورة',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            fontSize: SizeConfig.height * 0.025,
+                            color: ColorManager.primaryColor)),
+                  ),
+                  SizedBox(height: SizeConfig.height * 0.01),
                   if (cubit.image != null)
                     Card(
                       elevation: 10,
@@ -93,7 +101,7 @@ class AddImageViewBody extends StatelessWidget {
                         cubit.uploadImage();},
                       backGroundColor: ColorManager.primaryColor,
                       height: 30,
-                      width: 60,
+                      width: double.infinity,
                       content: const Text(
                         'نشر',
                         style: TextStyle(color: Colors.white),

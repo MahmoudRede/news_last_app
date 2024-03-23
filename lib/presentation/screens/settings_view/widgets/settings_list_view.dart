@@ -8,7 +8,6 @@ class SettingsListView extends StatelessWidget {
 
   final List<SettingsItemModel> items = const [
     SettingsItemModel(icon: Icons.settings_outlined, title: 'الاعدادات'),
-    SettingsItemModel(icon: Icons.translate, title: 'اللغة'),
     SettingsItemModel(icon: Icons.star_border_outlined, title: 'قيم تطبيقنا'),
     SettingsItemModel(icon: Icons.share, title: 'شارك تطبيقنا'),
     SettingsItemModel(icon: Icons.logout, title: 'تسجيل الخروج'),
@@ -26,7 +25,7 @@ class SettingsListView extends StatelessWidget {
           return const Divider(
             indent: 30,
             endIndent: 30,
-            height: 30,
+            height: 10,
             thickness: 0.8,
           );
         },

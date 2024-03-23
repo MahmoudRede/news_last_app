@@ -79,6 +79,7 @@ class ImageCubit extends Cubit<ImageState> {
   }
 
   void getImages() {
+    emit(GetImageLoadingState());
     FirebaseFirestore.instance.collection('images').get().then((value) {
       for (var doc in value.docs) {
         final image = ImageModel.fromJson(doc.data());
@@ -89,7 +90,4 @@ class ImageCubit extends Cubit<ImageState> {
       emit(GetImageFailureState(error));
     });
   }
-
-
-
 }

@@ -11,11 +11,11 @@ ThemeData getApplicationTheme (BuildContext context) {
 
     /// AppBar Theme
     appBarTheme:  AppBarTheme(
-      backgroundColor: ColorManager.white,
+      backgroundColor: ColorManager.primaryColor,
       elevation: 0,
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarIconBrightness: Brightness.dark,
-        statusBarColor: ColorManager.white,
+        statusBarIconBrightness: Brightness.light,
+        statusBarColor: ColorManager.primaryColor,
       ),
       iconTheme: const IconThemeData(
         color: ColorManager.white,

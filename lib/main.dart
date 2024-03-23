@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
-import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/death_details.dart';
 import 'package:news_last_app/presentation/screens/on_boarding_view/widgets/onboarding_constants.dart';
+import 'package:news_last_app/presentation/screens/splash_view/splash_view.dart';
 import 'package:news_last_app/styles/theme_manager/theme_manager.dart';
 
 import 'block_observer.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
             create: (BuildContext context) =>
-                AppCubit()..getUser(id: uId == null ? uId = '' : uId!)..getThanksPosts()),
+                AppCubit()..getUser(id: uId == null ? uId = '' : uId!)..getThanksPosts()..getDawina()),
         BlocProvider(
             create: (context) => LocalizationCubit()..fetchLocalization()),
         BlocProvider(create: (context) => BottomNavigationBarCubit()),
@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
               }
               return supportLang.first;
             },
-              home: const DeathDetailsScreen(),
+              home: const SplashView(),
           );
         },
       ),
