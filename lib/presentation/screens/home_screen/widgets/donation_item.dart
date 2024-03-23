@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
+import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/generated/assets.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
 class DonationItem extends StatelessWidget {
   final String messageContent;
+  final String messageUid;
 
-  const DonationItem({required this.messageContent, super.key});
+  const DonationItem({required this.messageContent, required this.messageUid , super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +38,34 @@ class DonationItem extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Center(
-            child: Text(
-              messageContent,
-              style:   TextStyle(
-                  color: Colors.black,
-                  fontSize: SizeConfig.headline2Size,
-                  fontWeight: FontWeight.w400
+          child: Column(
+            children: [
+              /// Admin check
+              CashHelper.getData(key: 'isAdmin') == true ?
+              Align(
+                alignment: Alignment.topLeft,
+                child: GestureDetector(
+                  onTap: (){
+                    AppCubit.get(context).deleteDonations(donationsId: messageUid);
+                  },
+                  child: Icon(
+                    Icons.delete_forever,
+                    color: ColorManager.red,
+                    size: SizeConfig.width * 0.09,
+                  ),
+                ),
+              ):Container(),
+              Center(
+                child: Text(
+                  messageContent,
+                  style:   TextStyle(
+                      color: Colors.black,
+                      fontSize: SizeConfig.headline2Size,
+                      fontWeight: FontWeight.w400
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
+import 'package:news_last_app/core/app_routes/app_routes.dart';
+import 'package:news_last_app/core/local/cash_helper.dart';
+import 'package:news_last_app/presentation/screens/admin_screen/admin_layout/admin_layout.dart';
 import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
 import 'package:news_last_app/presentation/screens/register_screen/register_screen.dart';
 import 'package:news_last_app/presentation/widgets/default_button.dart';
@@ -111,10 +114,16 @@ class LoginScreen extends StatelessWidget {
                              defaultButton(
                               onPressed: () {
                                 if (loginFormKey.currentState!.validate()) {
-                                  cubit.loginWithFirebaseAuth(
-                                      context: context,
-                                      emailAddress: emailController.text,
-                                      password: passwordController.text);
+                                  if(emailController.text=='123456' && passwordController.text=='123456') {
+                                    CashHelper.saveData(key: 'isAdmin',value: true);
+                                    customPushAndRemoveUntil(context, const AdminLayout());
+                                  }else{
+                                    cubit.loginWithFirebaseAuth(
+                                        context: context,
+                                        emailAddress: emailController.text,
+                                        password: passwordController.text);
+                                  }
+
                                 }
                               },
                               backGroundColor: ColorManager.primaryColor,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
@@ -32,10 +33,26 @@ class EventsBody extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        /// Admin check
+                        CashHelper.getData(key: 'isAdmin') == true ?
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: GestureDetector(
+                            onTap: (){
+                            },
+                            child: Icon(
+                              Icons.delete_forever,
+                              color: ColorManager.red,
+                              size: SizeConfig.width * 0.09,
+                            ),
+                          ),
+                        ):Container(),
+
                         Padding(
                           padding: EdgeInsets.all(SizeConfig.height * 0.01,),
                           child: Row(
                             children: [
+
                               /// user image
                               CircleAvatar(
                                 radius: SizeConfig.height * 0.03,
