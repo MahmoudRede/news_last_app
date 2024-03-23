@@ -118,6 +118,8 @@ class LoginScreen extends StatelessWidget {
                                     CashHelper.saveData(key: 'isAdmin',value: true);
                                     customPushAndRemoveUntil(context, const AdminLayout());
                                   }else{
+                                    CashHelper.saveData(key: 'isAdmin',value: false);
+
                                     cubit.loginWithFirebaseAuth(
                                         context: context,
                                         emailAddress: emailController.text,
