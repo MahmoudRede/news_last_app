@@ -8,3 +8,11 @@ const List<BottomNavigationBarItem> botNavItems = [
   BottomNavigationBarItem(icon: Icon(Icons.account_circle_outlined),label: 'حسابى'),
 
 ];
+
+
+
+const List<BottomNavigationBarItem> adminNavItems = [
+  BottomNavigationBarItem(icon: Icon(Icons.home_outlined),label: 'الرئيسية'),
+  BottomNavigationBarItem(icon: Icon(Icons.people_alt_outlined),label: 'المستخدمين'),
+
+];

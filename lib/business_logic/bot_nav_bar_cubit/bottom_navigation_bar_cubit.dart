@@ -32,6 +32,16 @@ class BottomNavigationBarCubit extends Cubit<BottomNavigationBarState> {
     'حسابي',
   ];
 
+  List<Widget> adminViews = [
+    const HomeView(),
+    const FavoriteView(),
+  ];
+
+  List<String> adminTitles = [
+    'الرئيسية',
+    'المستخدمين',
+  ];
+
   void changeBotNavViews(int index) {
       currentIndex = index;
       emit(BotNavChangeState());

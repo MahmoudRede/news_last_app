@@ -1,15 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
+import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
 class ThanksItem extends StatelessWidget {
   final String imageUrl;
   final String messageTitle;
+  final String messageUid;
   final String messageBody;
   final String personName;
-  const ThanksItem({ required this.imageUrl, required this.messageTitle, required this.messageBody, required this.personName, super.key});
+  const ThanksItem({ required this.imageUrl, required this.messageTitle, required this.messageBody, required this.messageUid, required this.personName, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,23 @@ class ThanksItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+
+                /// Admin check
+                CashHelper.getData(key: 'isAdmin') == true ?
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: GestureDetector(
+                    onTap: (){
+                      AppCubit.get(context).deleteThanks(thanksId: messageUid);
+                    },
+                    child: Icon(
+                      Icons.delete_forever,
+                      color: ColorManager.red,
+                      size: SizeConfig.width * 0.09,
+                    ),
+                  ),
+                ):Container(),
+
                  imageUrl == "" ? Container() : ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: CachedNetworkImage(imageUrl: imageUrl,

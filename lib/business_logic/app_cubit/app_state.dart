@@ -81,3 +81,14 @@ class GetDonationsSuccessState extends AppState{}
 class GetDonationsErrorState extends AppState{}
 
 
+class DeleteDawinaLoadingState extends AppState{}
+class DeleteDawinaSuccessState extends AppState{}
+class DeleteDawinaErrorState extends AppState{}
+
+class DeleteThanksLoadingState extends AppState{}
+class DeleteThanksSuccessState extends AppState{}
+class DeleteThanksErrorState extends AppState{}
+
+class DeleteDonationsLoadingState extends AppState{}
+class DeleteDonationsSuccessState extends AppState{}
+class DeleteDonationsErrorState extends AppState{}

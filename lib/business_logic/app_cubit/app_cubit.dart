@@ -170,6 +170,8 @@ class AppCubit extends Cubit<AppState> {
     selectedIndex = index;
     if (selectedIndex == 5) {
       getThanksPosts();
+    }
+    if (selectedIndex == 6) {
       getDonationPosts();
     }
     emit(ChangeHomeTabsState());
@@ -406,7 +408,52 @@ Future<void> uploadDonation({required String messageBody}) async {
 
   }
 
+  /// Admin Functions
+  
+  Future<void> deleteDawina({
+    required String dawinaId, 
+   })async {
+    emit(DeleteDawinaLoadingState());
+    await FirebaseFirestore.instance.collection('dawina')
+        .doc(dawinaId).delete().then((value) {
+      debugPrint('Item Delete Success From Dawina');
+      getDawina();
+      emit(DeleteDawinaSuccessState());
+    }).catchError((error) {
+      debugPrint('Error in delete Dawina is ${error.toString()}');
+      emit(DeleteDawinaErrorState());
+    });
+  }
 
 
+    Future<void> deleteThanks({
+      required String thanksId,
+    }) async {
+      emit(DeleteDawinaLoadingState());
+      await FirebaseFirestore.instance.collection('Thanks')
+          .doc(thanksId).delete().then((value) {
+        debugPrint('Item Delete Success From Thanks');
+        getThanksPosts();
+        emit(DeleteDawinaSuccessState());
+      }).catchError((error) {
+        debugPrint('Error in delete Thanks is ${error.toString()}');
+        emit(DeleteDawinaErrorState());
+      });
+    }
+
+  Future<void> deleteDonations({
+    required String donationsId,
+  }) async {
+    emit(DeleteDonationsLoadingState());
+    await FirebaseFirestore.instance.collection('Donations')
+        .doc(donationsId).delete().then((value) {
+      debugPrint('Item Delete Success From Donations');
+      getDonationPosts();
+      emit(DeleteDawinaSuccessState());
+    }).catchError((error) {
+      debugPrint('Error in delete Donations is ${error.toString()}');
+      emit(DeleteDonationsErrorState());
+    });
+  }
 
 }

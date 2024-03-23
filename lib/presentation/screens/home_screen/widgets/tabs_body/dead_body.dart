@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
+import '../../../../../core/local/cash_helper.dart';
+
 class DeadBody extends StatelessWidget {
   const DeadBody({super.key});
 
@@ -38,6 +40,7 @@ class DeadBody extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+
                               /// death date
                               Text(
                                 DateFormat('EEEE  dd - MM - yyyy', 'ar').format(DateTime.now()),
@@ -68,6 +71,24 @@ class DeadBody extends StatelessWidget {
                                       color: ColorManager.gold,
                                     ),
                                   ),
+
+                                  const SizedBox(width: 10,),
+
+                                  /// Admin check
+                                  CashHelper.getData(key: 'isAdmin') == true ?
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: GestureDetector(
+                                      onTap: (){
+
+                                      },
+                                      child: Icon(
+                                        Icons.delete_forever,
+                                        color: ColorManager.red,
+                                        size: SizeConfig.width * 0.09,
+                                      ),
+                                    ),
+                                  ):Container(),
                                 ],
                               ),
                             ],
