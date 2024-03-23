@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_last_app/core/app_routes/app_routes.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
 import '../../../business_logic/bot_nav_bar_cubit/bottom_navigation_bar_cubit.dart';
