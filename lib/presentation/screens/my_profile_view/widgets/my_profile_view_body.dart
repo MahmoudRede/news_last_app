@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_last_app/presentation/screens/my_profile_view/widgets/profile_card.dart';
 
-import 'package:news_last_app/styles/color_manager/color_manager.dart';
-
 import 'my_profile_list_view.dart';
 
 class MyProfileViewBody extends StatelessWidget {

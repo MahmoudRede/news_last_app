@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
-import 'package:news_last_app/data/models/user_model.dart';
 
 import '../../../../generated/assets.dart';
 import '../../../../styles/app_size/app_size_config.dart';

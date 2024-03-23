@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_last_app/core/app_routes/app_routes.dart';
-import 'package:news_last_app/presentation/screens/my_profile_view/my_profile_view.dart';
 import 'package:news_last_app/presentation/screens/my_profile_view/widgets/settings_view.dart';
 
 import '../data/my_profile_item_model.dart';
