@@ -55,7 +55,7 @@ class _AddViewState extends State<AddView> {
       crossAxisSpacing: 5.0,
       children: List.generate(items.length, (index) {
         return Container(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(15),

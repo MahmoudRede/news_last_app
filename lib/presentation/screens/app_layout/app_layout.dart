@@ -6,7 +6,6 @@ import 'package:news_last_app/styles/color_manager/color_manager.dart';
 import '../../../business_logic/bot_nav_bar_cubit/bottom_navigation_bar_cubit.dart';
 import '../../../business_logic/bot_nav_bar_cubit/bottom_navigation_bar_state.dart';
 import '../bottom_navigation_bar/views/custom_bottom_nav_bar.dart';
-import '../settings_view/settings_view.dart';
 
 class AppLayout extends StatelessWidget {
   const AppLayout({super.key});

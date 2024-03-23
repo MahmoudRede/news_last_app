@@ -79,5 +79,12 @@ class UploadDonationErrorState extends AppState{}
 class GetDonationsLoadingState extends AppState{}
 class GetDonationsSuccessState extends AppState{}
 class GetDonationsErrorState extends AppState{}
+class UpdateProfileLoadingState extends AppState{}
+class UpdateProfileSuccessState extends AppState{}
+class UpdateProfileErrorState extends AppState{
+  final String  error;
+
+  UpdateProfileErrorState(this.error);
+}
 
 
