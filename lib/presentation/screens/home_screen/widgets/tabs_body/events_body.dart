@@ -11,6 +11,8 @@ class EventsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Builder(
       builder: (context) {
         EventsCubit.get(context).getEvents();

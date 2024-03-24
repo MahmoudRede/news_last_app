@@ -20,6 +20,7 @@ class DeadBody extends StatelessWidget {
         return BlocConsumer<EventsCubit, EventsState>(
           listener: (context, state) {},
           builder: (context, state) {
+
             return Scaffold(
               backgroundColor: ColorManager.white,
               body: Column(
