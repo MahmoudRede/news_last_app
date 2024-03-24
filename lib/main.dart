@@ -3,9 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:news_last_app/business_logic/eventsCubit/events_cubit.dart';
+import 'package:news_last_app/core/local/shared_preference.dart';
+import 'package:news_last_app/presentation/screens/addDeathScreen/screen/add_death_screen.dart';
+import 'package:news_last_app/presentation/screens/addEventScreen/Screen/add_event_screen.dart';
 import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
 import 'package:news_last_app/presentation/screens/on_boarding_view/widgets/onboarding_constants.dart';
 import 'package:news_last_app/styles/theme_manager/theme_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'block_observer.dart';
 import 'business_logic/app_cubit/app_cubit.dart';
@@ -22,6 +27,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CashHelper.init();
   uId = CashHelper.getData(key: 'isUid');
+
+  await SharedPreferences.getInstance();
+  await UserDataFromStorage.getData();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -45,6 +53,8 @@ class MyApp extends StatelessWidget {
                 AppCubit()..getUser(id: uId == null ? uId = '' : uId!)..getThanksPosts()..getDawina()),
         BlocProvider(
             create: (context) => LocalizationCubit()..fetchLocalization()),
+        BlocProvider(
+            create: (context) => EventsCubit()..getDeaths()..getEvents()),
         BlocProvider(create: (context) => BottomNavigationBarCubit()),
       ],
       child: BlocConsumer<LocalizationCubit, LocalizationStates>(
