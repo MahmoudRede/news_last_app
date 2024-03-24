@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
@@ -10,6 +11,7 @@ class DeathDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
@@ -28,6 +30,8 @@ class DeathDetailsScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
+
 
           // person name
           Container(

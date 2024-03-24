@@ -16,7 +16,7 @@ class DonationBody extends StatelessWidget {
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
-              return DonationItem(messageContent: cubit.donationList[index].content??"");
+              return DonationItem(messageContent: cubit.donationList[index].content??"",messageUid:cubit.donationList[index].id! ,);
             },
             separatorBuilder: (context, index) {
               return const SizedBox();

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
+import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/data/models/dawina_model.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
@@ -30,6 +33,22 @@ class DawinaItem extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+
+                    /// Admin check
+                    CashHelper.getData(key: 'isAdmin') == true ?
+                     Align(
+                      alignment: Alignment.topLeft,
+                      child: GestureDetector(
+                        onTap: (){
+                          AppCubit.get(context).deleteDawina(dawinaId: dawinaModel.uId!);
+                        },
+                        child: Icon(
+                          Icons.delete_forever,
+                          color: ColorManager.red,
+                          size: SizeConfig.width * 0.09,
+                        ),
+                      ),
+                    ):Container(),
 
                     /// اسم الدوانيه
                     Row(

@@ -17,6 +17,7 @@ class ThanksBody extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return ThanksItem(
+                  messageUid: cubit.thanksList[index].uId??"",
                   imageUrl: cubit.thanksList[index].imagePath??"",
                   messageTitle: cubit.thanksList[index].title??"",
                   messageBody: cubit.thanksList[index].message??"",

@@ -9,6 +9,7 @@ import 'package:news_last_app/business_logic/bot_nav_bar_cubit/bottom_navigation
 import 'package:news_last_app/constants/firebase_errors.dart';
 import 'package:news_last_app/core/app_routes/app_routes.dart';
 import 'package:news_last_app/core/local/cash_helper.dart';
+import 'package:news_last_app/core/local/shared_preference.dart';
 import 'package:news_last_app/data/models/dawina_model.dart';
 import 'package:news_last_app/data/models/donation_model.dart';
 import 'package:news_last_app/data/models/thanks_model.dart';
@@ -139,6 +140,7 @@ class AppCubit extends Cubit<AppState> {
     emit(GetUserLoadingState());
     FirebaseFirestore.instance.collection('Users').doc(id).get().then((value) {
       userModel = UserModel.fromJson(value.data()!);
+      UserDataFromStorage.setFirstName(userModel!.userName!);
       debugPrint(userModel!.userName);
       debugPrint(userModel!.phoneNumber);
       debugPrint('here');
@@ -427,6 +429,56 @@ class AppCubit extends Cubit<AppState> {
     });
   }
 
+  /// Admin Functions
+
+  Future<void> deleteDawina({
+    required String dawinaId,
+  })async {
+    emit(DeleteDawinaLoadingState());
+    await FirebaseFirestore.instance.collection('dawina')
+        .doc(dawinaId).delete().then((value) {
+      debugPrint('Item Delete Success From Dawina');
+      getDawina();
+      emit(DeleteDawinaSuccessState());
+    }).catchError((error) {
+      debugPrint('Error in delete Dawina is ${error.toString()}');
+      emit(DeleteDawinaErrorState());
+    });
+  }
+
+
+  Future<void> deleteThanks({
+    required String thanksId,
+  }) async {
+    emit(DeleteDawinaLoadingState());
+    await FirebaseFirestore.instance.collection('Thanks')
+        .doc(thanksId).delete().then((value) {
+      debugPrint('Item Delete Success From Thanks');
+      getThanksPosts();
+      emit(DeleteDawinaSuccessState());
+    }).catchError((error) {
+      debugPrint('Error in delete Thanks is ${error.toString()}');
+      emit(DeleteDawinaErrorState());
+    });
+  }
+
+  Future<void> deleteDonations({
+    required String donationsId,
+  }) async {
+    emit(DeleteDonationsLoadingState());
+    await FirebaseFirestore.instance.collection('Donations')
+        .doc(donationsId).delete().then((value) {
+      debugPrint('Item Delete Success From Donations');
+      getDonationPosts();
+      emit(DeleteDawinaSuccessState());
+    }).catchError((error) {
+      debugPrint('Error in delete Donations is ${error.toString()}');
+      emit(DeleteDonationsErrorState());
+    });
+  }
+
+  ///profile image
+
   File? profileImage;
 
   Future<void> getProfileImage() async {
@@ -493,6 +545,8 @@ class AppCubit extends Cubit<AppState> {
       emit(UploadProfilePhotoErrorState(error));
     });
   }
+
+  ///logout
 
   Future<void> logout(BuildContext context) async {
     emit(LoginLoadingState());

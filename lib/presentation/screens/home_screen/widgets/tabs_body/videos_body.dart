@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
+import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 import 'package:video_player/video_player.dart';
@@ -47,7 +48,7 @@ class _VideosBodyState extends State<VideosBody> {
                             margin: EdgeInsets.symmetric(
                               horizontal: SizeConfig.height * 0.01,
                             ),
-                            height: SizeConfig.height * 0.35,
+                            height: SizeConfig.height * 0.37,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10)
@@ -56,6 +57,23 @@ class _VideosBodyState extends State<VideosBody> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+
+                                /// Admin check
+                                CashHelper.getData(key: 'isAdmin') == true ?
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: GestureDetector(
+                                    onTap: (){
+
+                                    },
+                                    child: Icon(
+                                      Icons.delete_forever,
+                                      color: ColorManager.red,
+                                      size: SizeConfig.width * 0.09,
+                                    ),
+                                  ),
+                                ):Container(),
+
                                 Text('سبحان الله',style: TextStyle(
                                   fontSize: SizeConfig.height * 0.022,
                                   fontWeight: FontWeight.w500,
