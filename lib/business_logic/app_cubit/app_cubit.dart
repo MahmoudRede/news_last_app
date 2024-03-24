@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:news_last_app/constants/firebase_errors.dart';
 import 'package:news_last_app/core/local/cash_helper.dart';
+import 'package:news_last_app/core/local/shared_preference.dart';
 import 'package:news_last_app/data/models/dawina_model.dart';
 import 'package:news_last_app/data/models/donation_model.dart';
 import 'package:news_last_app/data/models/thanks_model.dart';
@@ -134,6 +135,7 @@ class AppCubit extends Cubit<AppState> {
     emit(GetUserLoadingState());
     FirebaseFirestore.instance.collection('Users').doc(id).get().then((value) {
       userModel = UserModel.fromJson(value.data()!);
+      UserDataFromStorage.setFirstName(userModel!.userName!);
       debugPrint(userModel!.userName);
       debugPrint('here');
       emit(GetUserSuccessState());

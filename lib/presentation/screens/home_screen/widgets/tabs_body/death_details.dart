@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:news_last_app/presentation/screens/addDeathScreen/model/death_model.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
 class DeathDetailsScreen extends StatelessWidget {
-  const DeathDetailsScreen({super.key});
+  final DeathModel deathModel;
+  const DeathDetailsScreen({super.key, required this.deathModel});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,15 @@ class DeathDetailsScreen extends StatelessWidget {
             color: ColorManager.black,
           ),
         ),
+        title: Text(
+          "تفاصيل الوفاة",
+          style: TextStyle(
+            fontSize: SizeConfig.headline2Size,
+            fontWeight: FontWeight.w600,
+            color: ColorManager.black,
+          ),
+        ),
+        centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +49,7 @@ class DeathDetailsScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(SizeConfig.height * 0.01),
               child: Text(
-                'على مرزوق محمد مرزوق',
+                deathModel.personName,
                 style: TextStyle(
                   fontSize: SizeConfig.headline1Size,
                   fontWeight: FontWeight.w600,
@@ -68,7 +79,7 @@ class DeathDetailsScreen extends StatelessWidget {
 
 
                 Text(
-                  "68",
+                  deathModel.personAge,
                   style: TextStyle(
                     fontSize: SizeConfig.headline5Size,
                     fontWeight: FontWeight.w500,
@@ -108,7 +119,7 @@ class DeathDetailsScreen extends StatelessWidget {
 
 
                 Text(
-                  DateFormat('EEEE  dd - MM - yyyy', 'ar').format(DateTime.now()),
+                  deathModel.date,
                   style: TextStyle(
                     fontSize: SizeConfig.headline4Size,
                     fontWeight: FontWeight.w500,
@@ -124,7 +135,7 @@ class DeathDetailsScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal:SizeConfig.height * 0.06),
             child: Text(
-              "بعد صلاة العصر من مقبرة الصليبيخات",
+              deathModel.timeAndLocation,
               style: TextStyle(
                 fontSize: SizeConfig.headline4Size,
                 fontWeight: FontWeight.w400,
@@ -162,7 +173,7 @@ class DeathDetailsScreen extends StatelessWidget {
               children: [
 
                 Text(
-                  "فى المقبرة",
+                  deathModel.menLocation,
                   style: TextStyle(
                     fontSize: SizeConfig.headline4Size,
                     fontWeight: FontWeight.w400,
@@ -198,7 +209,7 @@ class DeathDetailsScreen extends StatelessWidget {
               children: [
 
                 Text(
-                  "99006263",
+                  deathModel.menPhone,
                   style: TextStyle(
                     fontSize: SizeConfig.headline2Size,
                     fontWeight: FontWeight.w600,
@@ -254,7 +265,7 @@ class DeathDetailsScreen extends StatelessWidget {
               children: [
 
                 Text(
-                  "صباح السالم ق4",
+                  deathModel.womanLocation,
                   style: TextStyle(
                     fontSize: SizeConfig.headline4Size,
                     fontWeight: FontWeight.w400,
@@ -290,7 +301,7 @@ class DeathDetailsScreen extends StatelessWidget {
               children: [
 
                 Text(
-                  "99006263",
+                  deathModel.womanPhone,
                   style: TextStyle(
                     fontSize: SizeConfig.headline2Size,
                     fontWeight: FontWeight.w600,

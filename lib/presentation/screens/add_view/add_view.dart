@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_last_app/core/app_routes/app_routes.dart';
 import 'package:news_last_app/generated/assets.dart';
+import 'package:news_last_app/presentation/screens/addDeathScreen/screen/add_death_screen.dart';
+import 'package:news_last_app/presentation/screens/addEventScreen/Screen/add_event_screen.dart';
 import 'package:news_last_app/presentation/screens/add_donation_screen/add_donation_screen.dart';
 import 'package:news_last_app/presentation/screens/add_image_view/add_image_view.dart';
 import 'package:news_last_app/presentation/screens/add_news_view/add_news_view.dart';
@@ -27,7 +29,7 @@ class _AddViewState extends State<AddView> {
           title: 'اضافة خبر',
           () => customPushNavigator(context, const AddNewsView())),
       AddGridViewModel(
-          image: Assets.imagesEvents, title: 'اضافة مناسبة', () => null),
+          image: Assets.imagesEvents, title: 'اضافة مناسبة', () => customPushNavigator(context, const AddEventScreen())),
       AddGridViewModel(
           image: Assets.imagesPicture,
           title: 'اضافة صورة',
@@ -35,7 +37,7 @@ class _AddViewState extends State<AddView> {
       AddGridViewModel(
           image: Assets.imagesVideo, title: 'اضافة فيديو', () => customPushNavigator(context, const AddVideoView())),
       AddGridViewModel(
-          image: Assets.imagesDead, title: 'اضافة حالة وفاة', () => null),
+          image: Assets.imagesDead, title: 'اضافة حالة وفاة', () => customPushNavigator(context, const AddDeathScreen())),
       AddGridViewModel(
           image: Assets.donating, title: 'اضافة تهنئة', () => customPushNavigator(context, const AddDonationScreen())),
       AddGridViewModel(
