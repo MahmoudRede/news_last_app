@@ -33,20 +33,6 @@ class EventsBody extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        /// Admin check
-                        CashHelper.getData(key: 'isAdmin') == true ?
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: GestureDetector(
-                            onTap: (){
-                            },
-                            child: Icon(
-                              Icons.delete_forever,
-                              color: ColorManager.red,
-                              size: SizeConfig.width * 0.09,
-                            ),
-                          ),
-                        ):Container(),
 
                         Padding(
                           padding: EdgeInsets.all(SizeConfig.height * 0.01,),

@@ -73,24 +73,6 @@ class DeadBody extends StatelessWidget {
                                       color: ColorManager.gold,
                                     ),
                                   ),
-
-                                  const SizedBox(width: 10,),
-
-                                  /// Admin check
-                                  CashHelper.getData(key: 'isAdmin') == true ?
-                                  Align(
-                                    alignment: Alignment.topLeft,
-                                    child: GestureDetector(
-                                      onTap: (){
-
-                                      },
-                                      child: Icon(
-                                        Icons.delete_forever,
-                                        color: ColorManager.red,
-                                        size: SizeConfig.width * 0.09,
-                                      ),
-                                    ),
-                                  ):Container(),
                                 ],
                               ),
                             ],
