@@ -152,27 +152,31 @@ class AddNewsBody extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  defaultButton(
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          if (cubit.newsImage == null) {
-                            cubit.addNewsPost(
-                                headline: headlineController.text,
-                                details: detailsController.text);
-                          } else {
-                            cubit.uploadNewsImage(
-                                headline: headlineController.text,
-                                details: detailsController.text);
-                          }
-                        }
-                      },
-                      backGroundColor: ColorManager.primaryColor,
-                      height: 30,
-                      width: double.infinity,
-                      content: const Text(
-                        'نشر',
-                        style: TextStyle(color: Colors.white),
-                      )),
+                  state is AddNewsLoadingState
+                      ? const CircularProgressIndicator(
+                          color: ColorManager.primaryColor,
+                        )
+                      : defaultButton(
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              if (cubit.newsImage == null) {
+                                cubit.addNewsPost(
+                                    headline: headlineController.text,
+                                    details: detailsController.text);
+                              } else {
+                                cubit.uploadNewsImage(
+                                    headline: headlineController.text,
+                                    details: detailsController.text);
+                              }
+                            }
+                          },
+                          backGroundColor: ColorManager.primaryColor,
+                          height: 30,
+                          width: double.infinity,
+                          content: const Text(
+                            'نشر',
+                            style: TextStyle(color: Colors.white),
+                          )),
                 ],
               ),
             ),

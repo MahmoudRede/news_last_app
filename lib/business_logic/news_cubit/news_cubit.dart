@@ -74,6 +74,7 @@ class NewsCubit extends Cubit<NewsState> {
     required String details,
     String? image,
   }) {
+    emit(AddNewsLoadingState());
     if (newsImage == null) {
       NewsItemModel model = NewsItemModel(headline: headline, details: details);
       FirebaseFirestore.instance

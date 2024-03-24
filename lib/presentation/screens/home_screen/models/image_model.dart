@@ -1,16 +1,18 @@
 class ImageModel {
-  String? image;
+  String? image,uId;
 
   ImageModel(
-      {required this.image});
+      {required this.image,this.uId});
 
   ImageModel.fromJson(Map<String, dynamic> json) {
     image = json['image'];
+    uId = json['uId'];
   }
 
   Map<String, dynamic> toMap() {
     return {
       'image': image,
+      'uId': uId,
 
     };
   }
