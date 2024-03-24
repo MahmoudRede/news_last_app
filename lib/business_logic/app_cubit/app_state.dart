@@ -79,12 +79,34 @@ class UploadDonationErrorState extends AppState{}
 class GetDonationsLoadingState extends AppState{}
 class GetDonationsSuccessState extends AppState{}
 class GetDonationsErrorState extends AppState{}
+
+/// update user data
 class UpdateProfileLoadingState extends AppState{}
 class UpdateProfileSuccessState extends AppState{}
 class UpdateProfileErrorState extends AppState{
   final String  error;
 
   UpdateProfileErrorState(this.error);
+}
+
+/// upload profile photo
+
+class ProfileImagePickerSuccessState extends AppState{}
+class ProfileImagePickerErrorState extends AppState{}
+class UploadProfilePhotoLoadingState extends AppState{}
+class UploadProfilePhotoSuccessState extends AppState{}
+class UploadProfilePhotoErrorState extends AppState{
+   final String error;
+
+  UploadProfilePhotoErrorState(this.error);
+}
+///logout
+class LogoutLoadingState extends AppState{}
+class LogoutSuccessState extends AppState{}
+class LogoutErrorState extends AppState{
+   final String error;
+
+  LogoutErrorState(this.error);
 }
 
 

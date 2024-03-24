@@ -5,15 +5,19 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:news_last_app/business_logic/bot_nav_bar_cubit/bottom_navigation_bar_cubit.dart';
 import 'package:news_last_app/constants/firebase_errors.dart';
+import 'package:news_last_app/core/app_routes/app_routes.dart';
 import 'package:news_last_app/core/local/cash_helper.dart';
 import 'package:news_last_app/data/models/dawina_model.dart';
 import 'package:news_last_app/data/models/donation_model.dart';
 import 'package:news_last_app/data/models/thanks_model.dart';
 import 'package:news_last_app/data/models/user_model.dart';
+import 'package:news_last_app/presentation/screens/Login_screen/login_screen.dart';
 import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 import 'package:video_player/video_player.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 part 'app_state.dart';
 
@@ -395,16 +399,15 @@ class AppCubit extends Cubit<AppState> {
   }
 
   /// UPDATE USER
-  void updateUser({
-    required String name,
-    required String phone,
-  }) {
+  void updateUser(
+      {required String name, required String phone, String? image}) {
     emit(UpdateProfileLoadingState());
     UserModel model = UserModel(
         userName: name,
         phoneNumber: userModel!.phoneNumber,
         emailAddress: userModel!.emailAddress,
-        uId: userModel!.phoneNumber);
+        uId: userModel!.phoneNumber,
+        image: image);
     FirebaseFirestore.instance
         .collection('Users')
         .doc(userModel!.uId)
@@ -423,4 +426,85 @@ class AppCubit extends Cubit<AppState> {
       emit(UpdateProfileErrorState(error));
     });
   }
+
+  File? profileImage;
+
+  Future<void> getProfileImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      print('image picked');
+      profileImage = File(pickedFile.path);
+      emit(ProfileImagePickerSuccessState());
+    } else {
+      print('No image selected');
+      emit(ProfileImagePickerErrorState());
+    }
+  }
+
+
+  void updateProfileImage(
+      {required String image}) {
+    emit(UpdateProfileLoadingState());
+    FirebaseFirestore.instance
+        .collection('Users')
+        .doc(userModel!.uId)
+        .update({'image' : image})
+        .then((value) async {
+      customToast(
+          title: 'Profile Updated successfully',
+          color: ColorManager.primaryColor);
+      emit(UpdateProfileSuccessState());
+      getUser(id: userModel!.uId!);
+    }).catchError((error) {
+      var index = (error.toString()).indexOf(']');
+      String showError = (error.toString()).substring(index + 1);
+      customToast(title: showError, color: ColorManager.primaryColor);
+      debugPrint(error);
+      emit(UpdateProfileErrorState(error));
+    });
+  }
+
+  void uploadProfileImage() {
+    emit(UploadProfilePhotoLoadingState());
+    firebase_storage.FirebaseStorage.instance
+        .ref()
+        .child('Users/${Uri.file(profileImage!.path).pathSegments.last}')
+        .putFile(profileImage!)
+        .then((value) {
+      value.ref.getDownloadURL().then((value) {
+        print(value.toString());
+        updateProfileImage(image: value);
+        customToast(
+            title: 'Profile image uploaded successfully',
+            color: ColorManager.primaryColor);
+        emit(UploadProfilePhotoSuccessState());
+      }).catchError((error) {
+        var index = (error.toString()).indexOf(']');
+        String showError = (error.toString()).substring(index + 1);
+        customToast(title: showError, color: ColorManager.primaryColor);
+        print(error);
+        emit(UploadProfilePhotoErrorState(error));
+      });
+    }).catchError((error) {
+      var index = (error.toString()).indexOf(']');
+      String showError = (error.toString()).substring(index + 1);
+      customToast(title: showError, color: ColorManager.primaryColor);
+      print(error);
+      emit(UploadProfilePhotoErrorState(error));
+    });
+  }
+
+  Future<void> logout(BuildContext context) async {
+    emit(LoginLoadingState());
+    try {
+      await FirebaseAuth.instance.signOut();
+      customPushAndRemoveUntil(context, const LoginScreen());
+      BottomNavigationBarCubit.get(context).currentIndex = 0 ;
+      emit(LogoutSuccessState());
+    } catch (error) {
+      print("Error logging out: $error");
+      emit(LoginErrorState(error.toString()));
+    }
+  }
+
 }
