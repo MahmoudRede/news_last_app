@@ -32,20 +32,20 @@ class ProfileCard extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const CircleAvatar(
+               CircleAvatar(
                 radius: 43,
                 backgroundColor: ColorManager.primaryColor,
                 child: CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage(
-                      Assets.imagesProfile,
-                    )),
+                    backgroundImage: userModel!.image == null? const AssetImage(
+                      Assets.imagesProfilePic,
+                    ) : NetworkImage(userModel.image!) as ImageProvider,),
               ),
               const SizedBox(
                 width: 16,
               ),
               Text(
-                '${userModel!.userName}',
+                '${userModel.userName}',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: SizeConfig.headline2Size,

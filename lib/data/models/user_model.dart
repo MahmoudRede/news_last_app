@@ -5,6 +5,7 @@ class UserModel {
   String? phoneNumber;
   String? emailAddress;
   String? uId;
+  String? image;
 
 
   UserModel({
@@ -12,6 +13,7 @@ class UserModel {
     required this.phoneNumber,
     this.emailAddress,
     this.uId,
+    this.image
 
   });
 
@@ -20,6 +22,7 @@ class UserModel {
     emailAddress : json['emailAddress'],
     phoneNumber : json['phoneNumber'],
     uId : json['uId'],
+    image : json['image'],
 
 
   );
@@ -30,6 +33,7 @@ class UserModel {
       'emailAddress': emailAddress,
       'phoneNumber': phoneNumber,
       'uId': uId,
+      'image': image,
     };
   }
 }

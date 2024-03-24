@@ -5,8 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:news_last_app/business_logic/eventsCubit/events_cubit.dart';
 import 'package:news_last_app/core/local/shared_preference.dart';
-import 'package:news_last_app/presentation/screens/addDeathScreen/screen/add_death_screen.dart';
-import 'package:news_last_app/presentation/screens/addEventScreen/Screen/add_event_screen.dart';
 import 'package:news_last_app/presentation/screens/app_layout/app_layout.dart';
 import 'package:news_last_app/presentation/screens/on_boarding_view/widgets/onboarding_constants.dart';
 import 'package:news_last_app/styles/theme_manager/theme_manager.dart';

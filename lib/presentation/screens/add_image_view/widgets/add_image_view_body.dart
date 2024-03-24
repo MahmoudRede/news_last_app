@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_last_app/business_logic/image_cubit/image_cubit.dart';
+import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 
 import '../../../../generated/assets.dart';
 import '../../../../styles/app_size/app_size_config.dart';
@@ -14,7 +15,11 @@ class AddImageViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ImageCubit, ImageState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is UploadImageSuccessState) {
+          Navigator.pop(context);
+        }
+      },
       builder: (context, state) {
         var cubit = ImageCubit.get(context);
         return SingleChildScrollView(
@@ -82,7 +87,7 @@ class AddImageViewBody extends StatelessWidget {
                             style: BorderStyle.values[1],
                           ),
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(20)),
+                              const BorderRadius.all(Radius.circular(20)),
                         ),
                         child: Center(
                           child: Image.asset(
@@ -96,16 +101,25 @@ class AddImageViewBody extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  defaultButton(
-                      onPressed: () {
-                        cubit.uploadImage();},
-                      backGroundColor: ColorManager.primaryColor,
-                      height: 30,
-                      width: double.infinity,
-                      content: const Text(
-                        'نشر',
-                        style: TextStyle(color: Colors.white),
-                      )),
+                  state is UploadImageLoadingState
+                      ? const CircularProgressIndicator(
+                          color: ColorManager.primaryColor,
+                        )
+                      : defaultButton(
+                          onPressed: () {
+                            if (cubit.image ==  null) {
+                              customToast(title: 'اختر صورة اولا', color: ColorManager.primaryColor);
+                            }else{
+                              cubit.uploadImage();
+                            }
+                          },
+                          backGroundColor: ColorManager.primaryColor,
+                          height: 30,
+                          width: double.infinity,
+                          content: const Text(
+                            'نشر',
+                            style: TextStyle(color: Colors.white),
+                          )),
                 ],
               ),
             ),
