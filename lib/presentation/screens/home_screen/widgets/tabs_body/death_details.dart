@@ -11,6 +11,7 @@ class DeathDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
