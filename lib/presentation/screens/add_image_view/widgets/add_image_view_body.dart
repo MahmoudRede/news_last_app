@@ -110,7 +110,7 @@ class AddImageViewBody extends StatelessWidget {
                             if (cubit.image ==  null) {
                               customToast(title: 'اختر صورة اولا', color: ColorManager.primaryColor);
                             }else{
-                              cubit.uploadImage();
+                              cubit.uploadImage(context);
                             }
                           },
                           backGroundColor: ColorManager.primaryColor,

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
+import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
 import 'package:news_last_app/presentation/screens/home_screen/models/image_model.dart';
 
 import '../../presentation/widgets/custom_toast.dart';
@@ -38,7 +39,7 @@ class ImageCubit extends Cubit<ImageState> {
 
   List<ImageModel> images = [];
 
-  void uploadImage() {
+  void uploadImage(context) {
     emit(UploadImageLoadingState());
     firebase_storage.FirebaseStorage.instance
         .ref()
@@ -46,28 +47,30 @@ class ImageCubit extends Cubit<ImageState> {
         .putFile(image!)
         .then((value) {
       value.ref.getDownloadURL().then((value) {
+        debugPrint(AppCubit.get(context).userModel!.uId);
         print(value.toString());
-        addImage(image: value);
+        addImage(image: value,context: context);
         emit(UploadImageSuccessState());
         return customToast(
             title: 'لقد تم رفع الصورة وسوف يتم التأكد منها قبل عرضها',
             color: Colors.green.shade700);
       }).catchError((error) {
         emit(UploadImageFailureState());
+        debugPrint(error.toString());
         return customToast(
             title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     }).catchError((error) {
       emit(UploadImageFailureState());
+      debugPrint(error.toString());
       return customToast(
           title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
     });
   }
 
-  void addImage({
-    required String image,
-  }) {
-    ImageModel model = ImageModel(image: image);
+  void addImage({required String image, required BuildContext context}) {
+    ImageModel model =
+        ImageModel(image: image, uId: AppCubit.get(context).userModel!.uId);
     FirebaseFirestore.instance
         .collection('images')
         .add(model.toMap())

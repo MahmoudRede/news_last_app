@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:meta/meta.dart';
+import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
 import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 
 import '../../presentation/screens/home_screen/models/news_item_model.dart';
@@ -43,6 +44,7 @@ class NewsCubit extends Cubit<NewsState> {
   void uploadNewsImage({
     required String headline,
     required String details,
+    context
   }) {
     emit(UploadNewsImageLoadingState());
     FirebaseStorage.instance
@@ -52,7 +54,7 @@ class NewsCubit extends Cubit<NewsState> {
         .then((value) {
       value.ref.getDownloadURL().then((value) {
         debugPrint(value.toString());
-        addNewsPost(headline: headline, details: details, image: value);
+        addNewsPost(headline: headline, details: details, image: value,context: context);
         emit(UploadNewsImageSuccessState());
         return customToast(
             title: 'لقد تم رفع الخبر وسوف يتم التأكد منه قبل عرضه',
@@ -69,14 +71,17 @@ class NewsCubit extends Cubit<NewsState> {
     });
   }
 
-  void addNewsPost({
-    required String headline,
-    required String details,
-    String? image,
-  }) {
+  void addNewsPost(
+      {required String headline,
+      required String details,
+      String? image,
+      required BuildContext context}) {
     emit(AddNewsLoadingState());
     if (newsImage == null) {
-      NewsItemModel model = NewsItemModel(headline: headline, details: details);
+      NewsItemModel model = NewsItemModel(
+          headline: headline,
+          details: details,
+          uId: AppCubit.get(context).userModel!.uId);
       FirebaseFirestore.instance
           .collection('news')
           .add(model.toMap())
@@ -91,8 +96,11 @@ class NewsCubit extends Cubit<NewsState> {
             title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     } else {
-      NewsItemModel model =
-          NewsItemModel(image: image, headline: headline, details: details);
+      NewsItemModel model = NewsItemModel(
+          image: image,
+          headline: headline,
+          details: details,
+          uId: AppCubit.get(context).userModel!.uId);
       FirebaseFirestore.instance
           .collection('news')
           .add(model.toMap())
