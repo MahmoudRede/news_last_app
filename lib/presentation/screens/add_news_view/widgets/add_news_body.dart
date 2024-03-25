@@ -161,6 +161,7 @@ class AddNewsBody extends StatelessWidget {
                             if (formKey.currentState!.validate()) {
                               if (cubit.newsImage == null) {
                                 cubit.addNewsPost(
+                                  context: context,
                                     headline: headlineController.text,
                                     details: detailsController.text);
                               } else {

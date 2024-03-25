@@ -35,130 +35,134 @@ class SettingsViewBody extends StatelessWidget {
         nameController.text = userModel!.userName!;
         registerEmailController.text = userModel.emailAddress!;
         registerPhoneController.text = userModel.phoneNumber!;
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Center(
-                child: Stack(
-                  alignment: AlignmentDirectional.bottomEnd,
-                  children: [
-                    Stack(
-                      alignment: AlignmentDirectional.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
-                          radius: 70.0,
-                          child: CircleAvatar(
-                            radius: 70.0,
-                            backgroundColor: Colors.white,
-                            backgroundImage: userModel.image == null
-                                ? const AssetImage(
-                                    Assets.imagesProfilePic,
-                                  )
-                                : NetworkImage(userModel.image!)
-                                    as ImageProvider,
-                          ),
-                        ),
-                        if (state is UploadProfilePhotoLoadingState)
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Center(
+                  child: Stack(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    children: [
+                      Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
                           CircleAvatar(
+                            backgroundColor:
+                                Theme.of(context).scaffoldBackgroundColor,
                             radius: 70.0,
-                            backgroundColor: Colors.grey.withOpacity(0.5),
-                            child: const CircularProgressIndicator(
-                              color: Colors.white,
+                            child: CircleAvatar(
+                              radius: 70.0,
+                              backgroundColor: Colors.white,
+                              backgroundImage: userModel.image == null
+                                  ? const AssetImage(
+                                      Assets.imagesProfilePic,
+                                    )
+                                  : NetworkImage(userModel.image!)
+                                      as ImageProvider,
                             ),
                           ),
-                      ],
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.grey.withOpacity(0.7),
-                      radius: 16,
-                      child: IconButton(
-                          splashRadius: 25.0,
-                          onPressed: () {
-                            AppCubit.get(context).getProfileImage();
-                          },
-                          icon: const Icon(
-                            Icons.camera,
-                            color: Colors.white,
-                            size: 16.0,
-                          )),
-                    ),
-                  ],
+                          if (state is UploadProfilePhotoLoadingState)
+                            CircleAvatar(
+                              radius: 70.0,
+                              backgroundColor: Colors.grey.withOpacity(0.5),
+                              child: const CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            ),
+                        ],
+                      ),
+                      CircleAvatar(
+                        backgroundColor: Colors.grey.withOpacity(0.7),
+                        radius: 16,
+                        child: IconButton(
+                            splashRadius: 25.0,
+                            onPressed: () {
+                              AppCubit.get(context).getProfileImage();
+                            },
+                            icon: const Icon(
+                              Icons.camera,
+                              color: Colors.white,
+                              size: 16.0,
+                            )),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 15.0,
-              ),
-
-              /// user name
-              DefaultTextField(
-                controller: nameController,
-                hintText: "الاسم",
-                validator: (value) {
-                  if (value!.trim() == "") {
-                    return "ادخل الاسم";
-                  }
-                  return null;
-                },
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.next,
-                onTap: () {},
-              ),
-              SizedBox(
-                height: SizeConfig.height * .03,
-              ),
-
-              /// email
-              DefaultTextField(
-                  controller: registerEmailController,
-                  hintText: "البريد الالكتروني",
-                  isPassword: false,
-                  validator: (validator) {
-                    if (validator!.trim() == "") {
-                      return "أدخل البريد الالكتروني";
+                const SizedBox(
+                  height: 15.0,
+                ),
+          
+                /// user name
+                DefaultTextField(
+                  controller: nameController,
+                  hintText: "الاسم",
+                  validator: (value) {
+                    if (value!.trim() == "") {
+                      return "ادخل الاسم";
                     }
                     return null;
                   },
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.next,
-                  onTap: () {}),
-              SizedBox(
-                height: SizeConfig.height * .03,
-              ),
-
-              /// phone number
-              DefaultTextField(
-                controller: registerPhoneController,
-                hintText: "رقم الهاتف",
-                validator: (value) {
-                  if (value!.trim() == "") {
-                    return "ادخل رقم الهاتف";
-                  }
-                  return null;
-                },
-                keyboardType: TextInputType.phone,
-                textInputAction: TextInputAction.next,
-                onTap: () {},
-              ),
-              SizedBox(
-                height: SizeConfig.height * .03,
-              ),
-              defaultButton(
-                  onPressed: () {
-                    AppCubit.get(context).updateUser(
-                        name: nameController.text,
-                        phone: registerPhoneController.text);
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: SizeConfig.height * .03,
+                ),
+          
+                /// email
+                DefaultTextField(
+                  enable: false,
+                    controller: registerEmailController,
+                    hintText: "البريد الالكتروني",
+                    isPassword: false,
+                    validator: (validator) {
+                      if (validator!.trim() == "") {
+                        return "أدخل البريد الالكتروني";
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    onTap: () {}),
+                SizedBox(
+                  height: SizeConfig.height * .03,
+                ),
+          
+                /// phone number
+                DefaultTextField(
+                  enable: false,
+                  controller: registerPhoneController,
+                  hintText: "رقم الهاتف",
+                  validator: (value) {
+                    if (value!.trim() == "") {
+                      return "ادخل رقم الهاتف";
+                    }
+                    return null;
                   },
-                  backGroundColor: ColorManager.primaryColor,
-                  height: 30,
-                  width: double.infinity,
-                  content: const Text(
-                    'Update',
-                    style: TextStyle(color: Colors.white),
-                  ))
-            ],
+                  keyboardType: TextInputType.phone,
+                  textInputAction: TextInputAction.next,
+                  onTap: () {},
+                ),
+                SizedBox(
+                  height: SizeConfig.height * .03,
+                ),
+                defaultButton(
+                    onPressed: () {
+                      AppCubit.get(context).updateUser(
+                          name: nameController.text,
+                          phone: registerPhoneController.text);
+                    },
+                    backGroundColor: ColorManager.primaryColor,
+                    height: 30,
+                    width: double.infinity,
+                    content: const Text(
+                      'Update',
+                      style: TextStyle(color: Colors.white),
+                    ))
+              ],
+            ),
           ),
         );
       },
