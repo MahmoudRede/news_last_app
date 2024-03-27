@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_last_app/presentation/widgets/default_text_field.dart';
 
-import '../../../../business_logic/news_cubit/news_cubit.dart';
+import '../../../../business_logic/ads_cubit/ads_cubit.dart';
 import '../../../../generated/assets.dart';
 import '../../../../styles/app_size/app_size_config.dart';
 import '../../../../styles/color_manager/color_manager.dart';
 import '../../../widgets/default_button.dart';
+import '../../../widgets/default_text_field.dart';
 
-class AddNewsBody extends StatelessWidget {
-  const AddNewsBody({super.key});
+class AddAdsViewBody extends StatelessWidget {
+  const AddAdsViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
     var detailsController = TextEditingController();
     var headlineController = TextEditingController();
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    return BlocConsumer<NewsCubit, NewsState>(
+    return BlocConsumer<AdsCubit, AdsState>(
       listener: (context, state) {
-        if (state is UploadNewsImageSuccessState ||
-            state is AddNewsSuccessState) {
+        if (state is UploadAdsImageSuccessState ||
+            state is AddAdsSuccessState) {
           Navigator.of(context).pop();
         }
       },
       builder: (context, state) {
-        var cubit = NewsCubit.get(context);
+        var cubit = AdsCubit.get(context);
         return SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -34,7 +34,7 @@ class AddNewsBody extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.topRight,
-                    child: Text('عنوان الخبر',
+                    child: Text('عنوان الإعلان',
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             fontSize: SizeConfig.height * 0.025,
                             color: ColorManager.primaryColor)),
@@ -57,7 +57,7 @@ class AddNewsBody extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.centerRight,
-                    child: Text('تفاصيل الخبر',
+                    child: Text('تفاصيل الإعلان',
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             fontSize: SizeConfig.height * 0.025,
                             color: ColorManager.primaryColor)),
@@ -88,7 +88,7 @@ class AddNewsBody extends StatelessWidget {
                             color: ColorManager.primaryColor)),
                   ),
                   SizedBox(height: SizeConfig.height * 0.01),
-                  if (cubit.newsImage != null)
+                  if (cubit.adsImage != null)
                     Card(
                       elevation: 10,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -99,7 +99,7 @@ class AddNewsBody extends StatelessWidget {
                         alignment: AlignmentDirectional.topEnd,
                         children: [
                           Image(
-                            image: FileImage(cubit.newsImage!),
+                            image: FileImage(cubit.adsImage!),
                             fit: BoxFit.cover,
                             width: double.infinity,
                           ),
@@ -123,7 +123,7 @@ class AddNewsBody extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (cubit.newsImage == null)
+                  if (cubit.adsImage == null)
                     GestureDetector(
                       onTap: () {
                         cubit.pickImage();
@@ -152,20 +152,20 @@ class AddNewsBody extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  state is AddNewsLoadingState || state is UploadNewsImageLoadingState
+                  state is AddAdsLoadingState || state is UploadAdsImageLoadingState
                       ? const CircularProgressIndicator(
                           color: ColorManager.primaryColor,
                         )
                       : defaultButton(
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              if (cubit.newsImage == null) {
-                                cubit.addNewsPost(
+                              if (cubit.adsImage == null) {
+                                cubit.addAdsPost(
                                     context: context,
                                     headline: headlineController.text,
                                     details: detailsController.text);
                               } else {
-                                cubit.uploadNewsImage(
+                                cubit.uploadAdsImage(
                                     context: context,
                                     headline: headlineController.text,
                                     details: detailsController.text);

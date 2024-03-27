@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:news_last_app/core/local/cash_helper.dart';
-import 'package:news_last_app/presentation/screens/home_screen/models/image_model.dart';
+import 'package:news_last_app/data/models/news_image_model.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
 class ImageItem extends StatelessWidget {
   const ImageItem({super.key, required this.imageModel});
 
-  final ImageModel imageModel;
+  final NewsImageModel imageModel;
 
   @override
   Widget build(BuildContext context) {

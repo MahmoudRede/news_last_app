@@ -35,5 +35,6 @@ class Assets {
   static const String dawina = 'assets/images/dinner.png';
   static const String uploadImage = 'assets/images/gallery.png';
   static const String imagesProfilePic = 'assets/images/ProfilePic.png';
+  static const String imagesAdvertisement = 'assets/images/advertisement.png';
 
 }

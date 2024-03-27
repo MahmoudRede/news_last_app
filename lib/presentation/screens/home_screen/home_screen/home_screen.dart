@@ -10,6 +10,7 @@ import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body
 import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/pictures_body.dart';
 import 'package:news_last_app/presentation/screens/home_screen/widgets/tabs_body/thanks_body.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
+import '../../../../business_logic/ads_cubit/ads_cubit.dart';
 import '../../../../business_logic/news_cubit/news_cubit.dart';
 import '../../../../styles/color_manager/color_manager.dart';
 import '../widgets/tabs_body/news_body.dart';
@@ -23,7 +24,10 @@ class HomeView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => NewsCubit()..getNews()),
-        BlocProvider(create: (context) => ImageCubit()..getImages())],
+        BlocProvider(create: (context) => ImageCubit()..getImages()),
+        BlocProvider(create: (context) => AdsCubit()..getAds()),
+
+      ],
       child: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {},
         builder: (context, state) {

@@ -3,6 +3,7 @@ import 'package:news_last_app/core/app_routes/app_routes.dart';
 import 'package:news_last_app/generated/assets.dart';
 import 'package:news_last_app/presentation/screens/addDeathScreen/screen/add_death_screen.dart';
 import 'package:news_last_app/presentation/screens/addEventScreen/Screen/add_event_screen.dart';
+import 'package:news_last_app/presentation/screens/add_ads_view/add_ads_view.dart';
 import 'package:news_last_app/presentation/screens/add_donation_screen/add_donation_screen.dart';
 import 'package:news_last_app/presentation/screens/add_image_view/add_image_view.dart';
 import 'package:news_last_app/presentation/screens/add_news_view/add_news_view.dart';
@@ -48,6 +49,11 @@ class _AddViewState extends State<AddView> {
           image: Assets.dawina,
           title: 'اضافة دواينه',
               () => customPushNavigator(context,  AddDawina())),
+      AddGridViewModel(
+          image: Assets.imagesAdvertisement,
+          title: 'اضافة إعلان',
+              () => customPushNavigator(context,  const AddAdsView())),
+
     ];
     return GridView.count(
       shrinkWrap: true,

@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
-import 'package:news_last_app/presentation/screens/home_screen/models/image_model.dart';
+import 'package:news_last_app/data/models/news_image_model.dart';
 
 import '../../presentation/widgets/custom_toast.dart';
 
@@ -37,7 +37,7 @@ class ImageCubit extends Cubit<ImageState> {
     emit(RemovePickedImageSuccessState());
   }
 
-  List<ImageModel> images = [];
+  List<NewsImageModel> images = [];
 
   void uploadImage(context) {
     emit(UploadImageLoadingState());
@@ -69,8 +69,8 @@ class ImageCubit extends Cubit<ImageState> {
   }
 
   void addImage({required String image, required BuildContext context}) {
-    ImageModel model =
-        ImageModel(image: image, uId: AppCubit.get(context).userModel!.uId);
+    NewsImageModel model =
+        NewsImageModel(image: image, uId: AppCubit.get(context).userModel!.uId);
     FirebaseFirestore.instance
         .collection('images')
         .add(model.toMap())
@@ -85,7 +85,7 @@ class ImageCubit extends Cubit<ImageState> {
     emit(GetImageLoadingState());
     FirebaseFirestore.instance.collection('images').get().then((value) {
       for (var doc in value.docs) {
-        final image = ImageModel.fromJson(doc.data());
+        final image = NewsImageModel.fromJson(doc.data());
         images.add(image);
       }
       emit(GetImageSuccessState());
