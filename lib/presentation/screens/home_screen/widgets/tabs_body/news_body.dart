@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_last_app/business_logic/ads_cubit/ads_cubit.dart';
-import 'package:news_last_app/constants/shimmer.dart';
 import 'package:news_last_app/presentation/screens/home_screen/widgets/news_item.dart';
-import 'package:news_last_app/presentation/screens/home_screen/widgets/ads_items.dart';
 
 import '../../../../../business_logic/news_cubit/news_cubit.dart';
 
