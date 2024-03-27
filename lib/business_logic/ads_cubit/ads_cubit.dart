@@ -5,128 +5,128 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:meta/meta.dart';
-import 'package:news_last_app/business_logic/app_cubit/app_cubit.dart';
-import 'package:news_last_app/presentation/widgets/custom_toast.dart';
 
-import '../../data/models/news_item_model.dart';
+import '../../data/models/ads_item_model.dart';
+import '../../presentation/widgets/custom_toast.dart';
+import '../app_cubit/app_cubit.dart';
 
-part '../../../../business_logic/news_cubit/news_state.dart';
+part 'ads_state.dart';
 
-class NewsCubit extends Cubit<NewsState> {
-  NewsCubit() : super(NewsInitial());
+class AdsCubit extends Cubit<AdsState> {
+  AdsCubit() : super(AdsInitial());
 
-  static NewsCubit get(context) => BlocProvider.of(context);
+  static AdsCubit get(context) => BlocProvider.of(context);
 
   var picker = ImagePicker();
-  File? newsImage;
+  File? adsImage;
 
   Future<void> pickImage() async {
-    emit(NewsImagePickerLoadingState());
+    emit(AdsImagePickerLoadingState());
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      newsImage = File(pickedFile.path);
-      emit(NewsImagePickerSuccessState());
+      adsImage = File(pickedFile.path);
+      emit(AdsImagePickerSuccessState());
     } else {
       print('No image selected');
-      emit(NewsImagePickerFailureState());
+      emit(AdsImagePickerFailureState());
     }
   }
 
   void removeImage() {
-    newsImage = null;
-    emit(RemoveNewsImageState());
+    adsImage = null;
+    emit(RemoveAdsImageState());
   }
 
-  List<NewsItemModel> news = [];
+  List<AdsItemModel> ads = [];
 
-  void uploadNewsImage({
+  void uploadAdsImage({
     required String headline,
     required String details,
     context
   }) {
-    emit(UploadNewsImageLoadingState());
+    emit(UploadAdsImageLoadingState());
     FirebaseStorage.instance
         .ref()
-        .child('news/${Uri.file(newsImage!.path).pathSegments.last}')
-        .putFile(newsImage!)
+        .child('ads/${Uri.file(adsImage!.path).pathSegments.last}')
+        .putFile(adsImage!)
         .then((value) {
       value.ref.getDownloadURL().then((value) {
         debugPrint(value.toString());
-        addNewsPost(headline: headline, details: details, image: value,context: context);
-        emit(UploadNewsImageSuccessState());
+        addAdsPost(headline: headline, details: details, image: value,context: context);
+        emit(UploadAdsImageSuccessState());
         return customToast(
             title: 'لقد تم رفع الخبر وسوف يتم التأكد منه قبل عرضه',
             color: Colors.green.shade700);
       }).catchError((error) {
-        emit(UploadNewsImageFailureState());
+        emit(UploadAdsImageFailureState());
         return customToast(
             title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     }).catchError((error) {
-      emit(UploadNewsImageFailureState());
+      emit(UploadAdsImageFailureState());
       return customToast(
           title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
     });
   }
 
-  void addNewsPost(
+  void addAdsPost(
       {required String headline,
-      required String details,
-      String? image,
-      required BuildContext context}) {
-    emit(AddNewsLoadingState());
-    if (newsImage == null) {
-      NewsItemModel model = NewsItemModel(
+        required String details,
+        String? image,
+        required BuildContext context}) {
+    emit(AddAdsLoadingState());
+    if (adsImage == null) {
+      AdsItemModel model = AdsItemModel(
           headline: headline,
           details: details,
           uId: AppCubit.get(context).userModel!.uId);
       FirebaseFirestore.instance
-          .collection('news')
+          .collection('ads')
           .add(model.toMap())
           .then((value) {
-        emit(AddNewsSuccessState());
+        emit(AddAdsSuccessState());
         return customToast(
-            title: 'لقد تم رفع الخبر وسوف يتم التأكد منه قبل عرضه',
+            title: 'لقد تم رفع الإعلان وسوف يتم التأكد منه قبل عرضه',
             color: Colors.green.shade700);
       }).catchError((error) {
-        emit(AddNewsFailureState());
+        emit(AddAdsFailureState());
         return customToast(
             title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     } else {
-      NewsItemModel model = NewsItemModel(
+      AdsItemModel model = AdsItemModel(
           image: image,
           headline: headline,
           details: details,
           uId: AppCubit.get(context).userModel!.uId);
       FirebaseFirestore.instance
-          .collection('news')
+          .collection('ads')
           .add(model.toMap())
           .then((value) {
-        emit(AddNewsSuccessState());
+        emit(AddAdsSuccessState());
         return customToast(
-            title: 'لقد تم رفع الخبر وسوف يتم التأكد منه قبل عرضه',
+            title: 'لقد تم رفع الإعلان وسوف يتم التأكد منه قبل عرضه',
             color: Colors.green.shade700);
       }).catchError((error) {
-        emit(AddNewsFailureState());
+        emit(AddAdsFailureState());
         return customToast(
             title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     }
   }
 
-  void getNews() {
-    emit(GetNewsLoadingState());
-    FirebaseFirestore.instance.collection('news').get().then((value) {
+  void getAds() {
+    emit(GetAdsLoadingState());
+    FirebaseFirestore.instance.collection('ads').get().then((value) {
       for (var doc in value.docs) {
-        final newsItem = NewsItemModel.fromJson(doc.data());
-        news.add(newsItem);
+        final adsItem = AdsItemModel.fromJson(doc.data());
+        ads.add(adsItem);
       }
-      emit(GetNewsSuccessState());
+      emit(GetAdsSuccessState());
     }).catchError((error) {
-      emit(GetNewsFailureState(error));
+      emit(GetAdsFailureState(error));
     });
   }
 }
+

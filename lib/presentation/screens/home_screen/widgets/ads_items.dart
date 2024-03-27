@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:news_last_app/core/local/cash_helper.dart';
-import 'package:news_last_app/styles/app_size/app_size_config.dart';
-import 'package:news_last_app/styles/color_manager/color_manager.dart';
 
-import '../../../../data/models/news_item_model.dart';
+import '../../../../core/local/cash_helper.dart';
+import '../../../../data/models/ads_item_model.dart';
+import '../../../../styles/app_size/app_size_config.dart';
+import '../../../../styles/color_manager/color_manager.dart';
 
-class NewsItemWithImage extends StatelessWidget {
-  const NewsItemWithImage({super.key, required this.newsItemModel});
+class AdsItemWithImage extends StatelessWidget {
+  const AdsItemWithImage({super.key, required this.adsItemModel});
 
-  final NewsItemModel newsItemModel;
+  final AdsItemModel adsItemModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
         margin:  EdgeInsets.symmetric(
-          horizontal: SizeConfig.width * 0.01
+            horizontal: SizeConfig.width * 0.01
         ),
         child: Material(
           elevation: SizeConfig.height * 0.015,
@@ -44,32 +44,32 @@ class NewsItemWithImage extends StatelessWidget {
 
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.network('${newsItemModel.image}'),
+                  child: Image.network('${adsItemModel.image}'),
                 ),
                 SizedBox(
                   height: SizeConfig.height*0.015,
                 ),
                 Text(
-                    '${newsItemModel.headline}',
+                  '${adsItemModel.headline}',
                   textAlign: TextAlign.start,
                   style:   TextStyle(
-                    color: Colors.black,
-                    fontSize: SizeConfig.headline4Size,
-                    fontWeight: FontWeight.bold
+                      color: Colors.black,
+                      fontSize: SizeConfig.headline4Size,
+                      fontWeight: FontWeight.bold
                   ),
                 ),
-                  SizedBox(
+                SizedBox(
                   height: SizeConfig.height*0.01,
                 ),
                 Text(
-                  '${newsItemModel.details}',
+                  '${adsItemModel.details}',
                   textAlign: TextAlign.start,
                   style:   TextStyle(
                     color: Colors.black,
                     fontSize: SizeConfig.headline5Size,
                   ),
                 ),
-                  SizedBox(
+                SizedBox(
                   height: SizeConfig.height*0.01,
                 ),
               ],
@@ -82,10 +82,10 @@ class NewsItemWithImage extends StatelessWidget {
 }
 
 
-class NewsItem extends StatelessWidget {
-  const NewsItem({super.key, required this.newsItemModel});
+class AdsItem extends StatelessWidget {
+  const AdsItem({super.key, required this.adsItemModel});
 
-  final NewsItemModel newsItemModel;
+  final AdsItemModel adsItemModel;
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +124,7 @@ class NewsItem extends StatelessWidget {
                   height: SizeConfig.height*0.015,
                 ),
                 Text(
-                  '${newsItemModel.headline}',
+                  '${adsItemModel.headline}',
                   textAlign: TextAlign.start,
                   style:   TextStyle(
                       color: Colors.black,
@@ -136,7 +136,7 @@ class NewsItem extends StatelessWidget {
                   height: SizeConfig.height*0.01,
                 ),
                 Text(
-                  '${newsItemModel.details}',
+                  '${adsItemModel.details}',
                   textAlign: TextAlign.start,
                   style:   TextStyle(
                     color: Colors.black,

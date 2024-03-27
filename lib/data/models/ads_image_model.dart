@@ -1,10 +1,10 @@
-class ImageModel {
+class AdsImageModel {
   String? image,uId;
 
-  ImageModel(
+  AdsImageModel(
       {required this.image,this.uId});
 
-  ImageModel.fromJson(Map<String, dynamic> json) {
+  AdsImageModel.fromJson(Map<String, dynamic> json) {
     image = json['image'];
     uId = json['uId'];
   }
