@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_last_app/generated/assets.dart';
 
 import '../../../../core/local/cash_helper.dart';
 import '../../../../data/models/ads_item_model.dart';
@@ -61,13 +62,19 @@ class AdsItemWithImage extends StatelessWidget {
                 SizedBox(
                   height: SizeConfig.height*0.01,
                 ),
-                Text(
-                  '${adsItemModel.details}',
-                  textAlign: TextAlign.start,
-                  style:   TextStyle(
-                    color: Colors.black,
-                    fontSize: SizeConfig.headline5Size,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      '${adsItemModel.details}',
+                      textAlign: TextAlign.start,
+                      style:   TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.headline5Size,
+                      ),
+                    ),
+                    const Spacer(),
+                    Image.asset(Assets.imagesAdvertisement,scale: 20,)
+                  ],
                 ),
                 SizedBox(
                   height: SizeConfig.height*0.01,
@@ -135,13 +142,19 @@ class AdsItem extends StatelessWidget {
                 SizedBox(
                   height: SizeConfig.height*0.01,
                 ),
-                Text(
-                  '${adsItemModel.details}',
-                  textAlign: TextAlign.start,
-                  style:   TextStyle(
-                    color: Colors.black,
-                    fontSize: SizeConfig.headline5Size,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      '${adsItemModel.details}',
+                      textAlign: TextAlign.start,
+                      style:   TextStyle(
+                        color: Colors.black,
+                        fontSize: SizeConfig.headline5Size,
+                      ),
+                    ),
+                    const Spacer(),
+                    Image.asset(Assets.imagesAdvertisement,scale: 20,)
+                  ],
                 ),
                 SizedBox(
                   height: SizeConfig.height*0.01,
