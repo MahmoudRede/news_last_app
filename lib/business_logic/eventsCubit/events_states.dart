@@ -17,6 +17,7 @@ class GetEventsFailureState extends EventsState {}
 
 
 class SelectedDateState extends EventsState {}
+class SetCalenderDateState extends EventsState {}
 
 
 class AddDeathEventLoadingState extends EventsState {}

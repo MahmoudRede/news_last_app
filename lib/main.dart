@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => LocalizationCubit()..fetchLocalization()),
         BlocProvider(
-            create: (context) => EventsCubit()..getDeaths()..getEvents()),
+            create: (context) => EventsCubit()..getDeaths()..getEvents()..getEventsWithDate(date: DateTime.now())),
         BlocProvider(create: (context) => BottomNavigationBarCubit()),
       ],
       child: BlocConsumer<LocalizationCubit, LocalizationStates>(

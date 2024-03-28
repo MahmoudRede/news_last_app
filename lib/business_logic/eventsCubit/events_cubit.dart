@@ -87,7 +87,7 @@ class EventsCubit extends Cubit<EventsState> {
     String? image,
   }) {
     if (eventImage == null) {
-      EventItemModel model = EventItemModel(userName: UserDataFromStorage.firstNameFromStorage, imageUrl: "", title: title, image: "");
+      EventItemModel model = EventItemModel(userName: UserDataFromStorage.firstNameFromStorage, imageUrl: "", title: title, image: "", date: DateFormat('EEEE  dd - MM - yyyy').format(DateTime.now()));
       FirebaseFirestore.instance
           .collection('Events')
           .add(model.toMap())
@@ -103,7 +103,7 @@ class EventsCubit extends Cubit<EventsState> {
             title: 'يرجي المحاوله  في وقت  لاحق', color: Colors.red.shade700);
       });
     } else {
-      EventItemModel model = EventItemModel(userName: UserDataFromStorage.firstNameFromStorage, imageUrl: "",image: image, title: title);
+      EventItemModel model = EventItemModel(userName: UserDataFromStorage.firstNameFromStorage, imageUrl: "",image: image, title: title, date: DateFormat('EEEE  dd - MM - yyyy').format(DateTime.now()));
       FirebaseFirestore.instance
           .collection('events')
           .add(model.toMap())
@@ -134,6 +134,35 @@ class EventsCubit extends Cubit<EventsState> {
       events = events.reversed.toList();
       debugPrint("Get Events ========>> ${events.length}");
       emit(GetEventsSuccessState());
+    });
+  }
+
+
+  void setCalenderDate({required DateTime date}) {
+    getEventsWithDate(date: date);
+    emit(SetCalenderDateState());
+  }
+
+
+
+  List<EventItemModel> eventsWithDateList = [];
+  void getEventsWithDate({required DateTime date}) {
+
+    String selected = DateFormat('EEEE  dd - MM - yyyy').format(date).toString();
+
+    emit(GetEventsLoadingState());
+    FirebaseFirestore.instance.collection('events').where('date', isEqualTo: selected).get().then((value) {
+      eventsWithDateList = [];
+      for (var doc in value.docs) {
+        final eventItem = EventItemModel.fromJson(doc.data());
+        eventsWithDateList.add(eventItem);
+      }
+      eventsWithDateList = eventsWithDateList.reversed.toList();
+      debugPrint("Get Events ========>> ${eventsWithDateList.length}");
+      emit(GetEventsSuccessState());
+    }).catchError((error){
+      debugPrint("Error when get events with date ${error.toString()}");
+      emit(GetEventsFailureState());
     });
   }
 

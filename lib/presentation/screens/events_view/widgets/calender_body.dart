@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:news_last_app/business_logic/eventsCubit/events_cubit.dart';
 import 'package:news_last_app/styles/app_size/app_size_config.dart';
 import 'package:news_last_app/styles/color_manager/color_manager.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -35,7 +37,9 @@ class CalenderBody extends StatelessWidget {
                 firstDay: DateTime.now(),
                 lastDay: DateTime.now().add(const Duration(days: 5 * 365)),
                 focusedDay: DateTime.now(),
-                onDaySelected: (selectedDay, focusedDay) {},
+                onDaySelected: (selectedDay, focusedDay) {
+                  EventsCubit.get(context).setCalenderDate(date: selectedDay);
+                },
               ),
               SizedBox(
                 height: SizeConfig.height * 0.02,

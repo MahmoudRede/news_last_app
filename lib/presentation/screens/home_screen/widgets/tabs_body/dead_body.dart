@@ -33,7 +33,7 @@ class DeadBody extends StatelessWidget {
                         padding: EdgeInsets.all(SizeConfig.height * 0.01),
                         child: InkWell(
                           onTap: (){
-                            customPushNavigator(context, const DeathDetailsScreen());
+                            customPushNavigator(context, DeathDetailsScreen(deathModel: EventsCubit.get(context).deaths[index],));
                           },
                           child: Container(
                             width: SizeConfig.width,
